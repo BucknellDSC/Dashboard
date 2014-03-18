@@ -1,0 +1,5 @@
+dashboard_course:
+    resource: "@DashboardCourseBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
