@@ -20,6 +20,19 @@ class Course
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+	
+	/**
+	* @ORM\Column(type="string")
+	**/
+	protected $name;
+	
+	protected $Faculty;
+	
+    /**
+	* @ORM\ManyToOne(targetEntity="Assignment", inversedBy="Assignment")
+	* @ORM\JoinColumn(name="Assignment_id", referencedColumnName="id")
+	**/
+	protected $Assignment;
 
 
     /**
