@@ -34,6 +34,7 @@ class Course
 	**/
 	protected $Assignment;
 
+	protected $Semester;
 
     /**
      * Get id

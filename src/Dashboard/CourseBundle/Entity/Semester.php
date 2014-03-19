@@ -21,6 +21,14 @@ class Semester
      */
     private $id;
 
+	/**
+	* @ORM\Column(type="string")
+	**/
+	protected $Name;
+	
+	protected $Course;
+	
+	protected $Assignment;
 
     /**
      * Get id
