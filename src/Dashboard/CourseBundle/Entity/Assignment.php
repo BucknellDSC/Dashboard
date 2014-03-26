@@ -2,6 +2,7 @@
 namespace Dashboard\CourseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Assignment
@@ -22,11 +23,13 @@ class Assignment
 	
 	/**
 	* @ORM\Column(type="string", length=100)
+	* @Assert\NotBlank()
 	**/
 	protected $name;
 	
 	/**
 	* @ORM\Column(type="text")
+	* @Assert\NotBlank()
 	**/
 	protected $BriefDescr;
 	
