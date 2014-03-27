@@ -39,21 +39,18 @@ class Assignment
 	protected $LongDescr;
 	
 	/**
-	* @ORM\OneToMany(targetEntity="Course", mappedBy="Assignment")
+	* @ORM\OneToMany(targetEntity="course", mappedBy="Assignment")
+         *@ORM\Column(nullable = true)
 	**/
 	protected $Course;
 	
-	public function _construct()
-	{
-		$this->Course = new ArrayCollection();
-		}
 	
 	protected $Semester;
 	
 	protected $Faculty;
 	
 	/**
-	* @ORM\Column(type="integer")
+	* @ORM\Column(type="integer", nullable = true)
 	**/
 	protected $StudentsEnrolled;
 	
@@ -64,23 +61,28 @@ class Assignment
 	/**
 	* @ORM\Column(type="boolean")
 	**/
-	protected $Showcase;
+	protected $Showcase = False;
 	
-		/**
-	* @ORM\Column(type="text")
+        /**
+	* @ORM\Column(type="text", nullable = true)
 	**/
 	protected $ProjectURL;
 	
 	
 	protected $AssociatedFile;
 	
-		/**
-	* @ORM\Column(type="string")
+	/**
+	* @ORM\Column(type="string", nullable = true)
 	**/
 	protected $KeyWords;
 	
 	protected $ItecStaff;
 
+    public function __construct()
+    {
+        $this->Course = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+        
     /**
      * Get id
      *
@@ -93,10 +95,7 @@ class Assignment
     /**
      * Constructor
      */
-    public function __construct()
-    {
-        $this->Course = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+   
 
     /**
      * Set name

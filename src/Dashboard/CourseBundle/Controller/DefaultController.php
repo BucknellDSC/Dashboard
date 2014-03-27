@@ -16,10 +16,19 @@ use Symfony\Component\httpFoundation\Request;
 
 class DefaultController extends Controller
 {
-	/**
-* @Route("/new", name="newAction")
-* @Template()
-*/
+    /**
+     * @Route("/index", name="courseIndex")
+     * @Template()
+     */
+    public function indexAction() {
+        $em = $this->getDoctrine()->getManager();
+        $assignments = $em->getRepository('DashboardCourseBundle:Assignment')->findAll();
+        return array('assignments' => $assignments);
+    } 
+   	/**
+        * @Route("/new", name="newAction")
+        * @Template()
+        */
 	public function newAction(Request $request)
 	{
 		// create a course and give it some dummy data for this example
@@ -31,13 +40,17 @@ class DefaultController extends Controller
 		$form = $this->createFormBuilder($assignment)
 			->add('name', 'text')
 			->add('BriefDescr', 'text')
+                        ->add('LongDescr', 'text')
 			->add('save', 'submit')
 			->getForm();
 			
 		$form->handleRequest($request);
 		
 		if ($form->isValid()){
-			return $this->redirect($this->generateUrl('task_success'));
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($assignment);
+                        $em->flush();
+			return $this->redirect($this->generateUrl('newAction'));
 			}
 			
 		return $this->render('DashboardCourseBundle:Default:new.html.twig', array(
