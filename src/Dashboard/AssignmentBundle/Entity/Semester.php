@@ -1,16 +1,16 @@
 <?php
 
-namespace Dashboard\CourseBundle\Entity;
+namespace Dashboard\AssignmentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Course
+ * Semester
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Dashboard\CourseBundle\Entity\CourseRepository")
+ * @ORM\Entity(repositoryClass="Dashboard\CourseBundle\Entity\SemesterRepository")
  */
-class Course
+class Semester
 {
     /**
      * @var integer
@@ -20,21 +20,15 @@ class Course
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	
+
 	/**
 	* @ORM\Column(type="string")
 	**/
-	protected $name;
+	protected $Name;
 	
-	protected $Faculty;
+	protected $Course;
 	
-    /**
-	* @ORM\ManyToOne(targetEntity="Assignment", inversedBy="Assignment")
-	* @ORM\JoinColumn(name="Assignment_id", referencedColumnName="id")
-	**/
 	protected $Assignment;
-
-	protected $Semester;
 
     /**
      * Get id

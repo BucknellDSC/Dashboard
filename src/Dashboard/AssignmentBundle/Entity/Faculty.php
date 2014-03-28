@@ -1,6 +1,6 @@
 <?php
 
-namespace Dashboard\CourseBundle\Entity;
+namespace Dashboard\AssignmentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

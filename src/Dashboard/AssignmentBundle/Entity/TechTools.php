@@ -1,16 +1,16 @@
 <?php
 
-namespace Dashboard\CourseBundle\Entity;
+namespace Dashboard\AssignmentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TechCategory
+ * TechTools
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Dashboard\CourseBundle\Entity\TechCategoryRepository")
+ * @ORM\Entity(repositoryClass="Dashboard\CourseBundle\Entity\TechToolsRepository")
  */
-class TechCategory
+class TechTools
 {
     /**
      * @var integer
@@ -28,6 +28,13 @@ class TechCategory
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Descr", type="text")
+     */
+    private $descr;
+
 
     /**
      * Get id
@@ -40,33 +47,10 @@ class TechCategory
     }
 
     /**
-     * Set y
-     *
-     * @param string $y
-     * @return TechCategory
-     */
-    public function setY($y)
-    {
-        $this->y = $y;
-
-        return $this;
-    }
-
-    /**
-     * Get y
-     *
-     * @return string 
-     */
-    public function getY()
-    {
-        return $this->y;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
-     * @return TechCategory
+     * @return TechTools
      */
     public function setName($name)
     {
@@ -83,5 +67,28 @@ class TechCategory
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set descr
+     *
+     * @param string $descr
+     * @return TechTools
+     */
+    public function setDescr($descr)
+    {
+        $this->descr = $descr;
+
+        return $this;
+    }
+
+    /**
+     * Get descr
+     *
+     * @return string 
+     */
+    public function getDescr()
+    {
+        return $this->descr;
     }
 }

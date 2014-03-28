@@ -1,5 +1,5 @@
 <?php
-namespace Dashboard\CourseBundle\Entity;
+namespace Dashboard\AssignmentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Assignment
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Dashboard\CourseBundle\Entity\AssignmentRepository")
+ * @ORM\Entity(repositoryClass="Dashboard\AssignmentBundle\Entity\AssignmentRepository")
  */
 class Assignment
 {
@@ -261,10 +261,10 @@ class Assignment
     /**
      * Add Course
      *
-     * @param \Dashboard\CourseBundle\Entity\Course $course
+     * @param \Dashboard\AssignmentBundle\Entity\Course $course
      * @return Assignment
      */
-    public function addCourse(\Dashboard\CourseBundle\Entity\Course $course)
+    public function addCourse(\Dashboard\AssignmentBundle\Entity\Course $course)
     {
         $this->Course[] = $course;
 
@@ -274,9 +274,9 @@ class Assignment
     /**
      * Remove Course
      *
-     * @param \Dashboard\CourseBundle\Entity\Course $course
+     * @param \Dashboard\AssignmentBundle\Entity\Course $course
      */
-    public function removeCourse(\Dashboard\CourseBundle\Entity\Course $course)
+    public function removeCourse(\Dashboard\AssignmentBundle\Entity\Course $course)
     {
         $this->Course->removeElement($course);
     }

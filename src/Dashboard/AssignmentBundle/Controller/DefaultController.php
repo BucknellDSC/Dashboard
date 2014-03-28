@@ -1,22 +1,23 @@
 <?php
 
-namespace Dashboard\CourseBundle\Controller;
+namespace Dashboard\AssignmentBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Dashboard\AssignmentBundle\Entity\Assignment;
+use Dashboard\AssignmentBundle\Entity\Course;
 use Symfony\Component\httpFoundation\Request;
 
 
 	/**
-* @Route("/Course")
+* @Route("/Assignment")
 */
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/index", name="courseIndex")
+     * @Route("/index", name="AssignmentIndex")
      * @Template()
      */
     public function indexAction() {
@@ -39,7 +40,7 @@ class DefaultController extends Controller
 		$form = $this->createFormBuilder($assignment)
 			->add('name', 'text')
 			->add('BriefDescr', 'text')
-                        ->add('LongDescr', 'text')
+            ->add('LongDescr', 'text')
 			->add('save', 'submit')
 			->getForm();
 			

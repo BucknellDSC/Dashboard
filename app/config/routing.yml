@@ -1,3 +1,13 @@
+dashboard_assignment:
+    resource: "@DashboardAssignmentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+dashboard_new_user:
+    resource: "@DashboardNewUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 dashboard_course:
     resource: "@DashboardCourseBundle/Controller/"
     type:     annotation
