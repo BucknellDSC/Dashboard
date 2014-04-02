@@ -11,7 +11,7 @@ use Symfony\Component\httpFoundation\Request;
 
 
 	/**
-* @Route("/Assignment")
+*@Route("/Assignment")
 */
 
 class DefaultController extends Controller
@@ -26,21 +26,35 @@ class DefaultController extends Controller
         return array('assignments' => $assignments);
     } 
    	/**
-        * @Route("/new", name="newAction")
+        * @Route("/new", name="newAssignment")
         * @Template()
         */
 	public function newAction(Request $request)
 	{
-		// create a course and give it some dummy data for this example
+		// create a Assignment and give it some dummy data for this example
 		$assignment = new Assignment();
 		
-		//$assignment->setName('TestAssignment');		
-		//$assignment->setBriefDescr('This is a test assignment');
+		$assignment->setStudentsEnrolled(0);
 		
 		$form = $this->createFormBuilder($assignment)
 			->add('name', 'text')
 			->add('BriefDescr', 'text')
-            ->add('LongDescr', 'text')
+            ->add('LongDescr', 'text')			
+			->add('Course', 'entity', array(
+				'class' => 'DashboardAssignmentBundle:Course',
+				'property' => 'name',
+			))
+			/*->add('Semester', 'choice', array(
+				'choices' => array('Sp14' =>'2014Spring', 'Fa13' => '2013Fall', 'Su13' => '2013Summer', 'Sp13' => '2013Spring')	
+			))*/
+			->add('Faculty', 'entity', array(
+				'class' => 'DashboardAssignmentBundle:Faculty',
+			))
+			->add('StudentsEnrolled', 'integer')
+			->add('TechCatory', 'text')
+			->add('TechTools', 'text')
+			->add('Showcase', 'checkbox')
+			->add('ProjectURL', 'text')
 			->add('save', 'submit')
 			->getForm();
 			
@@ -50,13 +64,17 @@ class DefaultController extends Controller
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($assignment);
                         $em->flush();
-			return $this->redirect($this->generateUrl('newAction'));
+			return $this->redirect($this->generateUrl('newAssignment'));
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
             'form' => $form->createView(),
 		));
 		}
+		
+		
 }
+
+
 
 

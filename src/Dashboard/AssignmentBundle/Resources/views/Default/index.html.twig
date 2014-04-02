@@ -1,3 +1,5 @@
+<h4>name    Brief Description    Course    Semester</h4>
 {% for assignment in assignments %}
-{{ assignment.name }}    {{ assignment.BriefDescr }}
+{{ assignment.name }}    {{ assignment.BriefDescr}}    {{ assignment.Course}}    {{ assignment.Semester}}
+<br>
 {% endfor %}

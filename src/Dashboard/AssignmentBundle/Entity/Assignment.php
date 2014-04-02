@@ -39,14 +39,21 @@ class Assignment
 	protected $LongDescr;
 	
 	/**
-	* @ORM\OneToMany(targetEntity="course", mappedBy="Assignment")
-         *@ORM\Column(nullable = true)
+	* @ORM\OneToMany(targetEntity="Course", mappedBy="Assignment")
+    *@ORM\Column(nullable = true)
 	**/
 	protected $Course;
 	
-	
+	/**
+	* @ORM\OneToMany(targetEntity="Semester", mappedBy="Assignment")
+    *@ORM\Column(nullable = true)
+	**/
 	protected $Semester;
 	
+	/**
+	* @ORM\OneToMany(targetEntity="Faculty", mappedBy="Assignment")
+    *@ORM\Column(nullable = true)
+	**/
 	protected $Faculty;
 	
 	/**
@@ -54,8 +61,16 @@ class Assignment
 	**/
 	protected $StudentsEnrolled;
 	
+	/**
+	* @ORM\OneToMany(targetEntity="TechTools", mappedBy="Assignment")
+    *@ORM\Column(nullable = true)
+	**/
 	protected $TechTools;
 	
+		/**
+	* @ORM\OneToMany(targetEntity="TechCatory", mappedBy="Assignment")
+    *@ORM\Column(nullable = true)
+	**/
 	protected $TechCatory;
 	
 	/**
@@ -289,5 +304,110 @@ class Assignment
     public function getCourse()
     {
         return $this->Course;
+    }
+
+    /**
+     * Set Course
+     *
+     * @param string $course
+     * @return Assignment
+     */
+    public function setCourse($course)
+    {
+        $this->Course = $course;
+
+        return $this;
+    }
+
+    /**
+     * Set Semester
+     *
+     * @param string $semester
+     * @return Assignment
+     */
+    public function setSemester($semester)
+    {
+        $this->Semester = $semester;
+
+        return $this;
+    }
+
+    /**
+     * Get Semester
+     *
+     * @return string 
+     */
+    public function getSemester()
+    {
+        return $this->Semester;
+    }
+
+    /**
+     * Set Faculty
+     *
+     * @param string $faculty
+     * @return Assignment
+     */
+    public function setFaculty($faculty)
+    {
+        $this->Faculty = $faculty;
+
+        return $this;
+    }
+
+    /**
+     * Get Faculty
+     *
+     * @return string 
+     */
+    public function getFaculty()
+    {
+        return $this->Faculty;
+    }
+
+    /**
+     * Set TechTools
+     *
+     * @param string $techTools
+     * @return Assignment
+     */
+    public function setTechTools($techTools)
+    {
+        $this->TechTools = $techTools;
+
+        return $this;
+    }
+
+    /**
+     * Get TechTools
+     *
+     * @return string 
+     */
+    public function getTechTools()
+    {
+        return $this->TechTools;
+    }
+
+    /**
+     * Set TechCatory
+     *
+     * @param string $techCatory
+     * @return Assignment
+     */
+    public function setTechCatory($techCatory)
+    {
+        $this->TechCatory = $techCatory;
+
+        return $this;
+    }
+
+    /**
+     * Get TechCatory
+     *
+     * @return string 
+     */
+    public function getTechCatory()
+    {
+        return $this->TechCatory;
     }
 }
