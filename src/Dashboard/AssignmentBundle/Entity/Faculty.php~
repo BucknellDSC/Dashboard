@@ -38,16 +38,15 @@ class Faculty
      * @var string
      *
      * @ORM\Column(name="Email", type="string", length=255)
-	 * @ORM\Column(nullable = true)
+	  * @ORM\Column(nullable = true)
      */
-	 
     private $email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Title", type="string", length=255)
-	 * @ORM\Column(nullable = true)
+	  * @ORM\Column(nullable = true)
      */
     private $title;
 

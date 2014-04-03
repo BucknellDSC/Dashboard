@@ -22,37 +22,41 @@ class Assignment
     protected $id;
 	
 	/**
-	* @ORM\Column(type="string", length=100)
-	* @Assert\NotBlank()
+	 * @ORM\Column(type="string")
+	 * @Assert\NotBlank()
 	**/
 	protected $name;
 	
 	/**
-	* @ORM\Column(type="text")
-	* @Assert\NotBlank()
+     * @ORM\Column(type="text")
+	 * @Assert\NotBlank()
 	**/
 	protected $BriefDescr;
 	
 	/**
-	* @ORM\Column(type="text")
+	 * @ORM\Column(type="text")
+	 * @ORM\Column(nullable = true)
 	**/
 	protected $LongDescr;
 	
 	/**
 	* @ORM\OneToMany(targetEntity="Course", mappedBy="Assignment")
-    *@ORM\Column(nullable = true)
+    * @ORM\Column(nullable = true)
+	* @Assert\NotBlank()
 	**/
 	protected $Course;
 	
 	/**
 	* @ORM\OneToMany(targetEntity="Semester", mappedBy="Assignment")
-    *@ORM\Column(nullable = true)
+    * @ORM\Column(nullable = true)
+	* @Assert\NotBlank()
 	**/
 	protected $Semester;
 	
 	/**
 	* @ORM\OneToMany(targetEntity="Faculty", mappedBy="Assignment")
     *@ORM\Column(nullable = true)
+	* @Assert\NotBlank()
 	**/
 	protected $Faculty;
 	
@@ -64,12 +68,14 @@ class Assignment
 	/**
 	* @ORM\OneToMany(targetEntity="TechTools", mappedBy="Assignment")
     *@ORM\Column(nullable = true)
+	* @Assert\NotBlank()
 	**/
 	protected $TechTools;
 	
 		/**
 	* @ORM\OneToMany(targetEntity="TechCatory", mappedBy="Assignment")
     *@ORM\Column(nullable = true)
+	* @Assert\NotBlank()
 	**/
 	protected $TechCatory;
 	
@@ -78,7 +84,7 @@ class Assignment
 	**/
 	protected $Showcase = False;
 	
-        /**
+    /**
 	* @ORM\Column(type="text", nullable = true)
 	**/
 	protected $ProjectURL;
