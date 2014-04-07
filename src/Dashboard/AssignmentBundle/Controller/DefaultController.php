@@ -36,17 +36,17 @@ class DefaultController extends Controller
 		$course -> setName('NIV200');
 		$em = $this->getDoctrine()->getManager();
         $em->persist($course);
-        $em->flush();
 		
 		$faculty = new Faculty();
 		$faculty -> setfirstName('Song');
 		$faculty -> setlastName('Chen');
-		$faculty -> setEmail('lr030@bucknell.edu');
-		$faculty -> setTitle('p');
-		$faculty -> setDepartment('East Asian');
-		$em = $this->getDoctrine()->getManager();
+		//$faculty -> setEmail('lr030@bucknell.edu');
+		//$faculty -> setTitle('p');
+		//$faculty -> setDepartment('East Asian');
+
         $em->persist($faculty);
         $em->flush();
+		return; 
 		
 		}
    	/**

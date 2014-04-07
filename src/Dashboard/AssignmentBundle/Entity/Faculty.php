@@ -37,8 +37,7 @@ class Faculty
     /**
      * @var string
      *
-     * @ORM\Column(name="Email", type="string", length=255)
-	 * @ORM\Column(nullable = true)
+     * @ORM\Column(name="Email", type="string", length=255, nullable = true)
      */
 	 
     private $email;
@@ -46,16 +45,14 @@ class Faculty
     /**
      * @var string
      *
-     * @ORM\Column(name="Title", type="string", length=255)
-	 * @ORM\Column(nullable = true)
+     * @ORM\Column(name="Title", type="string", length=255, nullable = true)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Department", type="string", length=255)
-	  * @ORM\Column(nullable = true)
+     * @ORM\Column(name="Department", type="string", length=255, nullable = true)
      */
     private $department;
 
