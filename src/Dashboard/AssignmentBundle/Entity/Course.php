@@ -31,7 +31,7 @@ class Course
 	protected $Faculty;
 	
     /**
-	* @ORM\ManyToOne(targetEntity="Assignment", inversedBy="Assignment")
+	* @ORM\ManyToOne(targetEntity="Assignment", inversedBy="Course")
 	* @ORM\JoinColumn(name="Assignment_id", referencedColumnName="id")
 	**/
 	protected $Assignment;
