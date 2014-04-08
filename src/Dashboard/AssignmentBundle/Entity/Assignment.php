@@ -23,12 +23,11 @@ class Assignment
 	
 	/**
 	 * @ORM\Column(type="string")
-	 * @Assert\NotBlank()
 	**/
 	protected $name;
 	
 	/**
-     * @ORM\Column(type="text")
+         * @ORM\Column(type="text")
 	 * @Assert\NotBlank()
 	**/
 	protected $BriefDescr;
@@ -41,24 +40,10 @@ class Assignment
 	
 	/**
 	* @ORM\OneToMany(targetEntity="Course", mappedBy="Assignment")
-    * @ORM\Column(nullable = true)
 	* @Assert\NotBlank()
 	**/
 	protected $Course;
-	
-	/**
-	* @ORM\OneToMany(targetEntity="Semester", mappedBy="Assignment")
-    * @ORM\Column(nullable = true)
-	* @Assert\NotBlank()
-	**/
-	protected $Semester;
-	
-	/**
-	* @ORM\OneToMany(targetEntity="Faculty", mappedBy="Assignment")
-    *@ORM\Column(nullable = true)
-	* @Assert\NotBlank()
-	**/
-	protected $Faculty;
+
 	
 	/**
 	* @ORM\Column(type="integer", nullable = true)
@@ -67,14 +52,14 @@ class Assignment
 	
 	/**
 	* @ORM\OneToMany(targetEntity="TechTools", mappedBy="Assignment")
-    *@ORM\Column(nullable = true)
+        * @ORM\Column(nullable = true)
 	* @Assert\NotBlank()
 	**/
 	protected $TechTools;
 	
-		/**
+	/**
 	* @ORM\OneToMany(targetEntity="TechCatory", mappedBy="Assignment")
-    *@ORM\Column(nullable = true)
+        * @ORM\Column(nullable = true)
 	* @Assert\NotBlank()
 	**/
 	protected $TechCatory;
@@ -84,20 +69,10 @@ class Assignment
 	**/
 	protected $Showcase = False;
 	
-    /**
+        /**
 	* @ORM\Column(type="text", nullable = true)
 	**/
 	protected $ProjectURL;
-	
-	
-	protected $AssociatedFile;
-	
-	/**
-	* @ORM\Column(type="string", nullable = true)
-	**/
-	protected $KeyWords;
-	
-	protected $ItecStaff;
 
     public function __construct()
     {

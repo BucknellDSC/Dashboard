@@ -35,7 +35,7 @@ class DefaultController extends Controller
 		$course = new Course();
 		$course -> setName('NIV200');
 		$em = $this->getDoctrine()->getManager();
-        $em->persist($course);
+                $em->persist($course);
 		
 		$faculty = new Faculty();
 		$faculty -> setfirstName('Song');
@@ -56,7 +56,6 @@ class DefaultController extends Controller
 	public function newAction(Request $request)
 	{
 		// create a Assignment and give it some dummy data for this example
-		$this -> NewObject();
 		$assignment = new Assignment();
 		
 		$assignment->setStudentsEnrolled(0);
@@ -64,23 +63,17 @@ class DefaultController extends Controller
 		$form = $this->createFormBuilder($assignment)
 			->add('name', 'text')
 			->add('BriefDescr', 'text')
-            ->add('LongDescr', 'text')			
+                        ->add('LongDescr', 'text')			
 			->add('Course', 'entity', array(
 				'class' => 'DashboardAssignmentBundle:Course',
 				'property' => 'name',
+                                'multiple' => true,
 			))
-			/*->add('Semester', 'choice', array(
-				'choices' => array('Sp14' =>'2014Spring', 'Fa13' => '2013Fall', 'Su13' => '2013Summer', 'Sp13' => '2013Spring')	
-			))*/
-			->add('Faculty', 'entity', array(
-				'class' => 'DashboardAssignmentBundle:Faculty',
-				'property' => 'firstName',
-			))
-			->add('StudentsEnrolled', 'integer')
-			->add('TechCatory', 'text')
-			->add('TechTools', 'text')
-			->add('Showcase', 'checkbox')
-			->add('ProjectURL', 'text')
+                        	->add('StudentsEnrolled', 'integer')
+                                ->add('TechCatory', 'text')
+                                ->add('TechTools', 'text')
+                                ->add('Showcase', 'checkbox')
+                                ->add('ProjectURL', 'text')
 			->add('save', 'submit')
 			->getForm();
 			
@@ -90,17 +83,13 @@ class DefaultController extends Controller
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($assignment);
                         $em->flush();
-			return $this->redirect($this->generateUrl('newAssignment'));
+			return $this->redirect($this->generateUrl('AssignmentIndex'));
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
             'form' => $form->createView(),
-		));
+                   ));
 		}
-		
-
-		
-		
 }
 
 

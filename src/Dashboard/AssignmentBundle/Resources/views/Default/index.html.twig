@@ -1,5 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
 <h4>name    Brief Description    Course    Semester</h4>
 {% for assignment in assignments %}
-{{ assignment.name }}    {{ assignment.BriefDescr}}    {{ assignment.Course}}    {{ assignment.Semester}}
+{{ assignment.name }}    {{ assignment.BriefDescr}}
 <br>
 {% endfor %}
+{% endblock %}
