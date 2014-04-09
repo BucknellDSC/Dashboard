@@ -43,14 +43,7 @@ class Assignment
 	* @Assert\NotBlank()
 	**/
 	protected $Course;
-	
-	
-	/**
-	* @ORM\OneToMany(targetEntity="Faculty", mappedBy="Assignment")
-        *@ORM\Column(nullable = true)
-	* @Assert\NotBlank()
-	**/
-	protected $Faculty;
+
 	
 	/**
 	* @ORM\Column(type="integer", nullable = true)
