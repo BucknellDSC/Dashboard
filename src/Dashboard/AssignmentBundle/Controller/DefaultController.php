@@ -79,31 +79,6 @@ class DefaultController extends Controller
             'form' => $form->createView(),
                    ));
 		}
-		
-		   	/**
-        * @Route("/newCourse", name="newCourse")
-        * @Template()
-        */
-	public function newCourseAction(Request $request)
-	{
-
-		$course = new Course();
-			
-		$form = $this ->createForm(new CourseType(), $course);
-			
-		$form->handleRequest($request);
-		
-		if ($form->isValid()){
-                        $em = $this->getDoctrine()->getManager();
-                        $em->persist($course);
-                        $em->flush();
-			return $this->redirect($this->generateUrl('AssignmentIndex'));//need to add a CourseIndex function
-			}
-			
-		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
-            'form' => $form->createView(),
-                   ));
-		}
 }
 
 

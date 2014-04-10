@@ -27,9 +27,23 @@ class CourseController extends Controller {
      * @Route("/newCourse", name="NewCourse")
      */
     public function newCourseAction() {
-        //Code for new Course Form here
-    }
-    
+        $course = new Course();
+			
+		$form = $this ->createForm(new CourseType(), $course);
+			
+		$form->handleRequest($request);
+		
+		if ($form->isValid()){
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($course);
+                        $em->flush();
+			return $this->redirect($this->generateUrl('AssignmentIndex'));//need to add a CourseIndex function
+			}
+			
+		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
+            'form' => $form->createView(),
+                   ));
+		}
     /**
      * @Route("/newSemester", name="NewSemester")
      */
