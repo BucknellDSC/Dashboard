@@ -97,7 +97,7 @@ class DefaultController extends Controller
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($course);
                         $em->flush();
-			return $this->redirect($this->generateUrl('AssignmentIndex'));
+			return $this->redirect($this->generateUrl('AssignmentIndex'));//need to add a CourseIndex function
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
