@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Dashboard\AssignmentBundle\Entity\Assignment;
 use Dashboard\AssignmentBundle\Entity\Course;
 use Dashboard\AssignmentBundle\Entity\Faculty;
+use Dashboard\AssignmentBundle\Form\Type\CourseType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,9 +25,9 @@ class CourseController extends Controller {
     } 
     
     /**
-     * @Route("/newCourse", name="NewCourse")
+     * @Route("/new", name="NewCourse")
      */
-    public function newCourseAction() {
+    public function newCourseAction(Request $request) {
         $course = new Course();
 			
 		$form = $this ->createForm(new CourseType(), $course);
