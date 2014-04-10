@@ -1,3 +1,7 @@
+default:
+    pattern:  /
+    defaults: { _controller: DashboardAssignmentBundle:Default:index }
+
 dashboard_assignment:
     resource: "@DashboardAssignmentBundle/Controller/"
     type:     annotation
