@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c5b03429af929641e5b0daa3cbb9e8a4",
+    "hash": "acc73eb9899752355eaea30ddd57e48e",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -104,7 +104,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
