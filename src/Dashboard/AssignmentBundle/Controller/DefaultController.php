@@ -10,6 +10,7 @@ use Dashboard\AssignmentBundle\Entity\Assignment;
 use Dashboard\AssignmentBundle\Entity\Course;
 use Dashboard\AssignmentBundle\Entity\Faculty;
 use Symfony\Component\httpFoundation\Request;
+use Dashboard\AssignmentBundle\Form\Type\AssignmentType;
 
 
 	/**
@@ -45,7 +46,7 @@ class DefaultController extends Controller
 		//$faculty -> setTitle('p');
 		//$faculty -> setDepartment('East Asian');
 
-        $em->persist($faculty);
+        //$em->persist($faculty);
         $em->flush();
 		return; 
 		
@@ -59,24 +60,10 @@ class DefaultController extends Controller
 		// create a Assignment and give it some dummy data for this example
 		$assignment = new Assignment();
 		
-		$assignment->setStudentsEnrolled(0);
+		//$assignment->setStudentsEnrolled(0);
 		
-		$form = $this->createFormBuilder($assignment)
-			->add('name', 'text')
-			->add('BriefDescr', 'text')
-                        ->add('LongDescr', 'text')			
-			->add('Course', 'entity', array(
-				'class' => 'DashboardAssignmentBundle:Course',
-				'property' => 'name',
-                                'multiple' => true,
-			))
-                        	->add('StudentsEnrolled', 'integer')
-                                ->add('TechCatory', 'text')
-                                ->add('TechTools', 'text')
-                                ->add('Showcase', 'checkbox')
-                                ->add('ProjectURL', 'text')
-			->add('save', 'submit')
-			->getForm();
+		$form = $this ->createForm(new AssignmentType(), $assignment);//$this->createFormBuilder($assignment)
+		//->getForm();
 			
 		$form->handleRequest($request);
 		

@@ -73,12 +73,14 @@ class Assignment
 	* @ORM\Column(type="text", nullable = true)
 	**/
 	protected $ProjectURL;
-
+	
+	  
     public function __construct()
     {
         $this->Course = new \Doctrine\Common\Collections\ArrayCollection();
     }
-        
+      
+
     /**
      * Get id
      *
