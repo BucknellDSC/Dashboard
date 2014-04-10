@@ -12,8 +12,3 @@ dashboard_new_user:
     type:     annotation
     prefix:   /
 
-dashboard_course:
-    resource: "@DashboardCourseBundle/Controller/"
-    type:     annotation
-    prefix:   /
-

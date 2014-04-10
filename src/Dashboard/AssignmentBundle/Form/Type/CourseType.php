@@ -11,6 +11,8 @@ class CourseType extends AbstractType
 		$builder
 			//->add('assignment')
 			->add('name', 'text')
+                        ->add('StudentsEnrolled', 'integer')
+                        ->add('Department', 'text')
 			/*->add('Semester', 'entity', array(
 		  		'class' => 'DashboardAssignmentBundle:Semester',
 				'property' => 'name',

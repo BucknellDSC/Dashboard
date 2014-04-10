@@ -39,16 +39,14 @@ class Assignment
 	protected $LongDescr;
 	
 	/**
-	* @ORM\OneToMany(targetEntity="Course", mappedBy="Assignment")
+	* @ORM\ManyToOne(targetEntity="Course", inversedBy="Assignment")
+        * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE")
 	* @Assert\NotBlank()
 	**/
 	protected $Course;
 
 	
-	/**
-	* @ORM\Column(type="integer", nullable = true)
-	**/
-	protected $StudentsEnrolled;
+	
 	
 	/**
 	* @ORM\OneToMany(targetEntity="TechTools", mappedBy="Assignment")

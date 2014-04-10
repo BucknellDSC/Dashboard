@@ -28,15 +28,20 @@ class Course
 	**/
 	protected $name;
 	
-	protected $Faculty;
-	
-    /**
-	* @ORM\ManyToOne(targetEntity="Assignment", inversedBy="Course")
-	* @ORM\JoinColumn(name="Assignment_id", referencedColumnName="id")
+        /**
+	* @ORM\OneToMany(targetEntity="Assignment", mappedBy="Course")
 	**/
 	protected $Assignment;
-
-	protected $Semester;
+        
+        /**
+	* @ORM\Column(type="integer", nullable = true)
+	**/
+	protected $StudentsEnrolled;
+        
+        /**
+         * @ORM\Column(type="string")
+         */
+        protected $Department;
 
     /**
      * Get id
@@ -92,5 +97,81 @@ class Course
     public function getAssignment()
     {
         return $this->Assignment;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Assignment = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set StudentsEnrolled
+     *
+     * @param integer $studentsEnrolled
+     * @return Course
+     */
+    public function setStudentsEnrolled($studentsEnrolled)
+    {
+        $this->StudentsEnrolled = $studentsEnrolled;
+
+        return $this;
+    }
+
+    /**
+     * Get StudentsEnrolled
+     *
+     * @return integer 
+     */
+    public function getStudentsEnrolled()
+    {
+        return $this->StudentsEnrolled;
+    }
+
+    /**
+     * Set Department
+     *
+     * @param string $department
+     * @return Course
+     */
+    public function setDepartment($department)
+    {
+        $this->Department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get Department
+     *
+     * @return string 
+     */
+    public function getDepartment()
+    {
+        return $this->Department;
+    }
+
+    /**
+     * Add Assignment
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Assignment $assignment
+     * @return Course
+     */
+    public function addAssignment(\Dashboard\AssignmentBundle\Entity\Assignment $assignment)
+    {
+        $this->Assignment[] = $assignment;
+
+        return $this;
+    }
+
+    /**
+     * Remove Assignment
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Assignment $assignment
+     */
+    public function removeAssignment(\Dashboard\AssignmentBundle\Entity\Assignment $assignment)
+    {
+        $this->Assignment->removeElement($assignment);
     }
 }
