@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Dashboard\CourseBundle\DashboardCourseBundle(),
             new Dashboard\NewUserBundle\DashboardNewUserBundle(),
             new Dashboard\AssignmentBundle\DashboardAssignmentBundle(),
+            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

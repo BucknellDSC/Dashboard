@@ -67,3 +67,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    
+assetic:
+    filters:
+        lessphp:
+             file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+             apply_to: "\.less$"
+        cssrewrite: ~
+braincrafted_bootstrap:
+    less_filter: lessphp
