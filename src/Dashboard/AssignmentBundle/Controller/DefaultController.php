@@ -11,6 +11,7 @@ use Dashboard\AssignmentBundle\Entity\Course;
 use Dashboard\AssignmentBundle\Entity\Faculty;
 use Symfony\Component\httpFoundation\Request;
 use Dashboard\AssignmentBundle\Form\Type\AssignmentType;
+use Dashboard\AssignmentBundle\Form\Type\CourseType;
 
 
 	/**
@@ -70,6 +71,31 @@ class DefaultController extends Controller
 		if ($form->isValid()){
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($assignment);
+                        $em->flush();
+			return $this->redirect($this->generateUrl('AssignmentIndex'));
+			}
+			
+		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
+            'form' => $form->createView(),
+                   ));
+		}
+		
+		   	/**
+        * @Route("/newCourse", name="newCourse")
+        * @Template()
+        */
+	public function newCourseAction(Request $request)
+	{
+
+		$course = new Course();
+			
+		$form = $this ->createForm(new CourseType(), $course);
+			
+		$form->handleRequest($request);
+		
+		if ($form->isValid()){
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($course);
                         $em->flush();
 			return $this->redirect($this->generateUrl('AssignmentIndex'));
 			}
