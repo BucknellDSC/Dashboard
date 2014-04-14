@@ -10,7 +10,7 @@ use Dashboard\AssignmentBundle\Entity\Faculty;
 use Dashboard\AssignmentBundle\Form\Type\CourseType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Dashboard\AssignmentBundle\Form\Type\CourseType;
+
 
 
 /**
