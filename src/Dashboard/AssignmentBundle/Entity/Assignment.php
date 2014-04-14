@@ -40,7 +40,7 @@ class Assignment
 	
 	/**
 	* @ORM\ManyToOne(targetEntity="Course", inversedBy="Assignment")
-        * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE")
+    * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
 	* @Assert\NotBlank()
 	**/
 	protected $Course;
@@ -162,28 +162,7 @@ class Assignment
         return $this->LongDescr;
     }
 
-    /**
-     * Set StudentsEnrolled
-     *
-     * @param integer $studentsEnrolled
-     * @return Assignment
-     */
-    public function setStudentsEnrolled($studentsEnrolled)
-    {
-        $this->StudentsEnrolled = $studentsEnrolled;
 
-        return $this;
-    }
-
-    /**
-     * Get StudentsEnrolled
-     *
-     * @return integer 
-     */
-    public function getStudentsEnrolled()
-    {
-        return $this->StudentsEnrolled;
-    }
 
     /**
      * Set Showcase
@@ -323,41 +302,7 @@ class Assignment
         return $this->Semester;
     }
 
-    /**
-     * Set Faculty
-     *
-     * @param string $faculty
-     * @return Assignment
-     */
-    public function setFaculty($faculty)
-    {
-        $this->Faculty = $faculty;
-
-        return $this;
-    }
-
-    /**
-     * Get Faculty
-     *
-     * @return string 
-     */
-    public function getFaculty()
-    {
-        return $this->Faculty;
-    }
-
-    /**
-     * Set TechTools
-     *
-     * @param string $techTools
-     * @return Assignment
-     */
-    public function setTechTools($techTools)
-    {
-        $this->TechTools = $techTools;
-
-        return $this;
-    }
+   
 
     /**
      * Get TechTools

@@ -28,7 +28,7 @@ class Course
 	**/
 	protected $name;
 	
-        /**
+    /**
 	* @ORM\OneToMany(targetEntity="Assignment", mappedBy="Course")
 	**/
 	protected $Assignment;
@@ -38,10 +38,19 @@ class Course
 	**/
 	protected $StudentsEnrolled;
         
-        /**
+		  /**
          * @ORM\Column(type="string")
          */
-        protected $Department;
+    protected $Department;
+	
+	        /**
+	* @ORM\ManyToMany(targetEntity="Assignment", mappedBy="Course")
+	**/	
+
+    protected $Faculty;
+	
+
+
 
     /**
      * Get id
@@ -75,6 +84,8 @@ class Course
     {
         return $this->name;
     }
+
+
 
     /**
      * Set Assignment
@@ -150,6 +161,42 @@ class Course
     public function getDepartment()
     {
         return $this->Department;
+    }
+	
+	 /**
+     * Set Faculty
+     *
+     * @param string $faculty
+     * @return Assignment
+     */
+    public function setFaculty($faculty)
+    {
+        $this->Faculty = $faculty;
+
+        return $this;
+    }
+
+    /**
+     * Get Faculty
+     *
+     * @return string 
+     */
+    public function getFaculty()
+    {
+        return $this->Faculty;
+    }
+
+    /**
+     * Set TechTools
+     *
+     * @param string $techTools
+     * @return Assignment
+     */
+    public function setTechTools($techTools)
+    {
+        $this->TechTools = $techTools;
+
+        return $this;
     }
 
     /**
