@@ -21,12 +21,18 @@ class Course
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	
+        
+        /**
+	* @ORM\Column(type="string", length=100)
+	* @Assert\NotBlank()
+	**/
+	protected $CourseNumber;
+    
 	/**
 	* @ORM\Column(type="string", length=100)
 	* @Assert\NotBlank()
 	**/
-	protected $name;
+	protected $Name;
 	
         /**
 	* @ORM\OneToMany(targetEntity="Assignment", mappedBy="Course")
@@ -38,11 +44,16 @@ class Course
 	**/
 	protected $StudentsEnrolled;
         
-        /**
+	/**
          * @ORM\Column(type="string")
          */
         protected $Department;
-
+	
+	/**
+	* @ORM\ManyToMany(targetEntity="Faculty")
+	**/	
+        protected $Faculty;
+	
     /**
      * Get id
      *
@@ -61,7 +72,7 @@ class Course
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->Name = $name;
 
         return $this;
     }
@@ -73,8 +84,10 @@ class Course
      */
     public function getName()
     {
-        return $this->name;
+        return $this->Name;
     }
+
+
 
     /**
      * Set Assignment
@@ -98,4 +111,140 @@ class Course
     {
         return $this->Assignment;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Assignment = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set StudentsEnrolled
+     *
+     * @param integer $studentsEnrolled
+     * @return Course
+     */
+    public function setStudentsEnrolled($studentsEnrolled)
+    {
+        $this->StudentsEnrolled = $studentsEnrolled;
+
+        return $this;
+    }
+
+    /**
+     * Get StudentsEnrolled
+     *
+     * @return integer 
+     */
+    public function getStudentsEnrolled()
+    {
+        return $this->StudentsEnrolled;
+    }
+
+    /**
+     * Set Department
+     *
+     * @param string $department
+     * @return Course
+     */
+    public function setDepartment($department)
+    {
+        $this->Department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get Department
+     *
+     * @return string 
+     */
+    public function getDepartment()
+    {
+        return $this->Department;
+    }
+	
+	 /**
+     * Set Faculty
+     *
+     * @param string $faculty
+     * @return Assignment
+     */
+    public function setFaculty($faculty)
+    {
+        $this->Faculty = $faculty;
+
+        return $this;
+    }
+
+    /**
+     * Get Faculty
+     *
+     * @return string 
+     */
+    public function getFaculty()
+    {
+        return $this->Faculty;
+    }
+
+    /**
+     * Set TechTools
+     *
+     * @param string $techTools
+     * @return Assignment
+     */
+    public function setTechTools($techTools)
+    {
+        $this->TechTools = $techTools;
+
+        return $this;
+    }
+
+    /**
+     * Add Assignment
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Assignment $assignment
+     * @return Course
+     */
+    public function addAssignment(\Dashboard\AssignmentBundle\Entity\Assignment $assignment)
+    {
+        $this->Assignment[] = $assignment;
+
+        return $this;
+    }
+
+    /**
+     * Remove Assignment
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Assignment $assignment
+     */
+    public function removeAssignment(\Dashboard\AssignmentBundle\Entity\Assignment $assignment)
+    {
+        $this->Assignment->removeElement($assignment);
+    }
+
+    /**
+     * Add Faculty
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Faculty $faculty
+     * @return Course
+     */
+    public function addFaculty(\Dashboard\AssignmentBundle\Entity\Faculty $faculty)
+    {
+        $this->Faculty[] = $faculty;
+
+        return $this;
+    }
+
+    /**
+     * Remove Faculty
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Faculty $faculty
+     */
+    public function removeFaculty(\Dashboard\AssignmentBundle\Entity\Faculty $faculty)
+    {
+        $this->Faculty->removeElement($faculty);
+    }
+    
+    }

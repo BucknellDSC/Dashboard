@@ -25,38 +25,41 @@ class Faculty
      * @var string
      * @ORM\Column(name="FirstName", type="string", length=255)
      */
-    private $firstName;
+    private $FirstName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="LastName", type="string", length=255)
      */
-    private $lastName;
+    private $LastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Email", type="string", length=255)
-	  * @ORM\Column(nullable = true)
+     * @ORM\Column(name="Email", type="string", length=255, nullable = true)
      */
-    private $email;
+	 
+    private $Email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Title", type="string", length=255)
-	  * @ORM\Column(nullable = true)
+     * @ORM\Column(name="Title", type="string", length=255, nullable = true)
      */
-    private $title;
+    private $Title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Department", type="string", length=255)
-	  * @ORM\Column(nullable = true)
+     * @ORM\Column(name="Department", type="string", length=255, nullable = true)
      */
-    private $department;
+    private $Department;
+    
+    /**
+    * @ORM\ManyToMany(targetEntity="Course", mappedBy="Faculty")
+    **/
+    private $Courses;
 
 
     /**

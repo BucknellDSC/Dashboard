@@ -22,9 +22,23 @@ class CourseController extends Controller {
      * @Template()
      */
     public function indexAction() {
-        return new Response("Course Controller");
+        
+        $em = $this->getDoctrine()->getManager();
+        $courses = $em->getRepository('DashboardAssignmentBundle:Course')->findAll();
+        return array("courses" => $courses);
     } 
     
+    /**
+     * @Route("/{courseid}/view", name="CourseView")
+     * @Template()
+     */
+    public function viewAction($courseid) {
+        $em = $this->getDoctrine()->getManager();
+        $course = $em->getRepository('DashboardAssignmentBundle:Course')->find($courseid);
+        return array("course" => $course);
+    }
+
+
     /**
      * @Route("/new", name="NewCourse")
      */
@@ -39,7 +53,7 @@ class CourseController extends Controller {
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($course);
                         $em->flush();
-			return $this->redirect($this->generateUrl('AssignmentIndex'));//need to add a CourseIndex function
+			return $this->redirect($this->generateUrl('CourseIndex'));//need to add a CourseIndex function
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
@@ -47,10 +61,16 @@ class CourseController extends Controller {
                    ));
 		}
     /**
-     * @Route("/newSemester", name="NewSemester")
+     * @Route("{courseid}/delete", name="DeleteCourse")
+     * @Template()
      */
-    public function newSemesterAction() {
-        //Code for new Course Form here
+    public function deleteAction($courseid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $course = $em->getRepository('DashboardAssignmentBundle:Course')->find($courseid);
+        $em->remove($course);
+        $em->flush();
+        return $this->redirect($this->generateUrl('CourseIndex'));
     }
 	   	
 }

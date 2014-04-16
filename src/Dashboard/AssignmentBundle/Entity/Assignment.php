@@ -24,7 +24,7 @@ class Assignment
 	/**
 	 * @ORM\Column(type="string")
 	**/
-	protected $name;
+	protected $Name;
 	
 	/**
          * @ORM\Column(type="text")
@@ -101,7 +101,7 @@ class Assignment
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->Name = $name;
 
         return $this;
     }
@@ -113,7 +113,7 @@ class Assignment
      */
     public function getName()
     {
-        return $this->name;
+        return $this->Name;
     }
 
     /**

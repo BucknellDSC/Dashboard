@@ -25,14 +25,14 @@ class Faculty
      * @var string
      * @ORM\Column(name="FirstName", type="string", length=255)
      */
-    private $firstName;
+    private $FirstName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="LastName", type="string", length=255)
      */
-    private $lastName;
+    private $LastName;
 
     /**
      * @var string
@@ -40,21 +40,26 @@ class Faculty
      * @ORM\Column(name="Email", type="string", length=255, nullable = true)
      */
 	 
-    private $email;
+    private $Email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Title", type="string", length=255, nullable = true)
      */
-    private $title;
+    private $Title;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Department", type="string", length=255, nullable = true)
      */
-    private $department;
+    private $Department;
+    
+    /**
+    * @ORM\ManyToMany(targetEntity="Course")
+    **/
+    private $Courses;
 
 
     /**
@@ -75,7 +80,7 @@ class Faculty
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = $firstName;
+        $this->FirstName = $firstName;
 
         return $this;
     }
@@ -87,7 +92,7 @@ class Faculty
      */
     public function getFirstName()
     {
-        return $this->firstName;
+        return $this->FirstName;
     }
 
     /**
@@ -98,7 +103,7 @@ class Faculty
      */
     public function setLastName($lastName)
     {
-        $this->lastName = $lastName;
+        $this->LastName = $lastName;
 
         return $this;
     }
@@ -110,7 +115,7 @@ class Faculty
      */
     public function getLastName()
     {
-        return $this->lastName;
+        return $this->LastName;
     }
 
     /**
@@ -121,7 +126,7 @@ class Faculty
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->Email = $email;
 
         return $this;
     }
@@ -133,7 +138,7 @@ class Faculty
      */
     public function getEmail()
     {
-        return $this->email;
+        return $this->Email;
     }
 
     /**
@@ -144,7 +149,7 @@ class Faculty
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->Title = $title;
 
         return $this;
     }
@@ -156,7 +161,7 @@ class Faculty
      */
     public function getTitle()
     {
-        return $this->title;
+        return $this->Title;
     }
 
     /**
@@ -167,7 +172,7 @@ class Faculty
      */
     public function setDepartment($department)
     {
-        $this->department = $department;
+        $this->Department = $department;
 
         return $this;
     }
@@ -179,6 +184,51 @@ class Faculty
      */
     public function getDepartment()
     {
-        return $this->department;
+        return $this->Department;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Courses = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add Courses
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Course $courses
+     * @return Faculty
+     */
+    public function addCourse(\Dashboard\AssignmentBundle\Entity\Course $courses)
+    {
+        $this->Courses[] = $courses;
+
+        return $this;
+    }
+
+    /**
+     * Remove Courses
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Course $courses
+     */
+    public function removeCourse(\Dashboard\AssignmentBundle\Entity\Course $courses)
+    {
+        $this->Courses->removeElement($courses);
+    }
+
+    /**
+     * Get Courses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCourses()
+    {
+        return $this->Courses;
+    }
+    
+    public function getFullName()
+    {
+        return $this->LastName . ', ' . $this->FirstName; 
     }
 }

@@ -10,30 +10,27 @@ class CourseType extends AbstractType
 	{
 		$builder
 			//->add('assignment')
+                        ->add('CourseNumber', 'text')
 			->add('name', 'text')
                         ->add('StudentsEnrolled', 'integer')
                         ->add('Department', 'text')
+                        ->add('Faculty', 'entity', array(
+				'class' => 'DashboardAssignmentBundle:Faculty',
+				'property' => 'FullName',
+				'multiple' => true,
+			))
 			/*->add('Semester', 'entity', array(
 		  		'class' => 'DashboardAssignmentBundle:Semester',
 				'property' => 'name',
 				'multiple' => true,
-			))
-            ->add('Faculty', 'entity', array(
-				'class' => 'DashboardAssignmentBundle:Faculty',
-				'property' => 'firstName' + 'lastName',
-				'multiple' => true,
 			))			
-			->add('Assignment', 'entity', array(
-				'class' => 'DashboardAssignmentBundle:Course',
-				'property' => 'name',
-                'multiple' => true,
-			))*/
+			*/
 			
 		  ->add('save', 'submit');
 	}	
 	
 	public function getName()
 	{
-		return 'assignment';	
+		return 'course';	
 	}
 }

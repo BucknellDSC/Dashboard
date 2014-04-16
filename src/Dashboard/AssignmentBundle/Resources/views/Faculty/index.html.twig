@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+{% block sidebar %}
+<a href ="{{path('NewFaculty')}}">Add Faculty Member</a>
+{% endblock %}
+{% block body %}
+<table class ="table">
+    <tr>
+        <th>Title</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Department</th>
+    </tr>
+{% for faculty in faculty %}
+    <tr>
+        <td>{{faculty.title}}</td> 
+        <td>{{ faculty.firstName }}</td> 
+        <td>{{ faculty.LastName}}</td> 
+        <td>{{faculty.department}}</td>
+        <td><a href="{{ path('DeleteFaculty', {'facultyid' : faculty.id}) }}">Delete</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

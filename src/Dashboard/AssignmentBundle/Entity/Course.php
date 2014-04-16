@@ -21,14 +21,20 @@ class Course
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	
+        
+        /**
+	* @ORM\Column(type="string", length=100)
+	* @Assert\NotBlank()
+	**/
+	protected $CourseNumber;
+    
 	/**
 	* @ORM\Column(type="string", length=100)
 	* @Assert\NotBlank()
 	**/
-	protected $name;
+	protected $Name;
 	
-    /**
+        /**
 	* @ORM\OneToMany(targetEntity="Assignment", mappedBy="Course")
 	**/
 	protected $Assignment;
@@ -38,20 +44,16 @@ class Course
 	**/
 	protected $StudentsEnrolled;
         
-		  /**
+	/**
          * @ORM\Column(type="string")
          */
-    protected $Department;
+        protected $Department;
 	
-	        /**
-	* @ORM\ManyToMany(targetEntity="Assignment", mappedBy="Course")
+	/**
+	* @ORM\ManyToMany(targetEntity="Faculty")
 	**/	
-
-    protected $Faculty;
+        protected $Faculty;
 	
-
-
-
     /**
      * Get id
      *
@@ -70,7 +72,7 @@ class Course
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->Name = $name;
 
         return $this;
     }
@@ -82,7 +84,7 @@ class Course
      */
     public function getName()
     {
-        return $this->name;
+        return $this->Name;
     }
 
 
@@ -220,5 +222,52 @@ class Course
     public function removeAssignment(\Dashboard\AssignmentBundle\Entity\Assignment $assignment)
     {
         $this->Assignment->removeElement($assignment);
+    }
+
+    /**
+     * Add Faculty
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Faculty $faculty
+     * @return Course
+     */
+    public function addFaculty(\Dashboard\AssignmentBundle\Entity\Faculty $faculty)
+    {
+        $this->Faculty[] = $faculty;
+
+        return $this;
+    }
+
+    /**
+     * Remove Faculty
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Faculty $faculty
+     */
+    public function removeFaculty(\Dashboard\AssignmentBundle\Entity\Faculty $faculty)
+    {
+        $this->Faculty->removeElement($faculty);
+    }
+    
+    
+    /**
+     * Set CourseNumber
+     *
+     * @param string $courseNumber
+     * @return Course
+     */
+    public function setCourseNumber($courseNumber)
+    {
+        $this->CourseNumber = $courseNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get CourseNumber
+     *
+     * @return string 
+     */
+    public function getCourseNumber()
+    {
+        return $this->CourseNumber;
     }
 }
