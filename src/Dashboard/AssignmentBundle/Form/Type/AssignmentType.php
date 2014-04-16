@@ -15,10 +15,7 @@ class AssignmentType extends AbstractType
             ->add('LongDescr', 'text')			
 			->add('Course', 'entity', array(
 				'class' => 'DashboardAssignmentBundle:Course',
-				'property' => 'name',
-                                'multiple' => true,
-			))
-                        	->add('StudentsEnrolled', 'integer')
+				'property' => 'name'))
                                 ->add('TechCatory', 'text')
                                 ->add('TechTools', 'text')
                                 ->add('Showcase', 'checkbox')

@@ -37,7 +37,7 @@ class Course
         /**
 	* @ORM\OneToMany(targetEntity="Assignment", mappedBy="Course")
 	**/
-	protected $Assignment;
+	protected $Assignments;
         
         /**
 	* @ORM\Column(type="integer", nullable = true)
@@ -54,6 +54,14 @@ class Course
 	**/	
         protected $Faculty;
 	
+     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Assignment = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -85,38 +93,6 @@ class Course
     public function getName()
     {
         return $this->Name;
-    }
-
-
-
-    /**
-     * Set Assignment
-     *
-     * @param \Dashboard\AssignmentBundle\Entity\Assignment $assignment
-     * @return Course
-     */
-    public function setAssignment(\Dashboard\AssignmentBundle\Entity\Assignment $assignment = null)
-    {
-        $this->Assignment = $assignment;
-
-        return $this;
-    }
-
-    /**
-     * Get Assignment
-     *
-     * @return \Dashboard\AssignmentBundle\Entity\Assignment 
-     */
-    public function getAssignment()
-    {
-        return $this->Assignment;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->Assignment = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -269,5 +245,15 @@ class Course
     public function getCourseNumber()
     {
         return $this->CourseNumber;
+    }
+
+    /**
+     * Get Assignments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAssignments()
+    {
+        return $this->Assignments;
     }
 }

@@ -40,14 +40,11 @@ class Assignment
 	
 	/**
 	* @ORM\ManyToOne(targetEntity="Course", inversedBy="Assignment")
-    * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
+        * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
 	* @Assert\NotBlank()
 	**/
 	protected $Course;
 
-	
-	
-	
 	/**
 	* @ORM\OneToMany(targetEntity="TechTools", mappedBy="Assignment")
         * @ORM\Column(nullable = true)
@@ -314,6 +311,19 @@ class Assignment
         return $this->TechTools;
     }
 
+    /**
+     * Set TechCatory
+     *
+     * @param string $techTools
+     * @return Assignment
+     */
+    public function setTechTools($techTools)
+    {
+        $this->TechTools = $techTools;
+
+        return $this;
+    }
+    
     /**
      * Set TechCatory
      *
