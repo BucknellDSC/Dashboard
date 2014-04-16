@@ -11,15 +11,19 @@ class AssignmentType extends AbstractType
 		$builder
 			//->add('assignment')
 			->add('name', 'text')
-			->add('BriefDescr', 'text')
-            ->add('LongDescr', 'text')			
+			->add('BriefDescription', 'text')
+            ->add('LongDescription', 'text')			
 			->add('Course', 'entity', array(
 				'class' => 'DashboardAssignmentBundle:Course',
 				'property' => 'name'))
-                                ->add('TechCatory', 'text')
-                                ->add('TechTools', 'text')
-                                ->add('Showcase', 'checkbox')
-                                ->add('ProjectURL', 'text')
+            ->add('TechnologyCategory', 'entity', array(
+				'class' => 'DashboardAssignmentBundle:TechnologyCategory',
+				'property' => 'name'))
+            ->add('TechnologyTools', 'entity', array(
+				'class' => 'DashboardAssignmentBundle:TechnologyTools',
+				'property' => 'name'))
+            ->add('Showcase', 'checkbox')
+            ->add('ProjectURL', 'text')
 			->add('save', 'submit');
 	}	
 	

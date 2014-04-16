@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+{% block sidebar %}
+<a href ="{{path('NewTechCat')}}">Add Technology Category</a>
+{% endblock %}
+{% block body %}
+<table class="table">
+    <tr>
+        <th>Category Name</th>
+    </tr>
+{% for Cat in TechnologyCategory %}
+    <tr>
+        <td>{{ Cat.name }}</td>
+    </tr>
+{% endfor %}    
+</table>
+{% endblock %}

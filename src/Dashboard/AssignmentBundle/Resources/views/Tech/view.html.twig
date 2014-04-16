@@ -1,0 +1,30 @@
+{% extends "::base.html.twig" %}
+{% block sidebar %}
+<a href ="{{path('NewCourse')}}">Add Course</a> <br>
+<a href ="{{path('CourseIndex')}}">Index</a>
+{% endblock %}
+{% block body %}
+<table class="table">
+    <tr>
+        <th>Course Number</th>
+        <th>Name</th>
+        <th>Faculty</th>
+        <th>Department</th>
+    </tr>
+    <tr>
+        <td>{{ course.coursenumber }}</td>
+        <td>{{ course.name }}</td>
+        <td>{% for faculty in course.faculty %} {{ faculty.FullName}} <br> {% endfor %}</td> 
+        <td>{{course.department}}</td>
+    </tr>   
+</table>
+<h4>Assignments</h4>
+<table class="table">
+    {% for assignment in course.assignments %}
+    <tr>
+        <td>{{assignment.name}}</td>
+        <td>{{assignment.briefdescr}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

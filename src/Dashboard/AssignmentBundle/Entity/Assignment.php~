@@ -24,45 +24,40 @@ class Assignment
 	/**
 	 * @ORM\Column(type="string")
 	**/
-	protected $name;
+	protected $Name;
 	
 	/**
          * @ORM\Column(type="text")
 	 * @Assert\NotBlank()
 	**/
-	protected $BriefDescr;
+	protected $BriefDescription;
 	
 	/**
 	 * @ORM\Column(type="text")
 	 * @ORM\Column(nullable = true)
 	**/
-	protected $LongDescr;
+	protected $LongDescription;
 	
 	/**
-	* @ORM\OneToMany(targetEntity="Course", mappedBy="Assignment")
+	* @ORM\ManyToOne(targetEntity="Course", inversedBy="Assignment")
+        * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
 	* @Assert\NotBlank()
 	**/
 	protected $Course;
 
-	
-	/**
-	* @ORM\Column(type="integer", nullable = true)
-	**/
-	protected $StudentsEnrolled;
-	
 	/**
 	* @ORM\OneToMany(targetEntity="TechTools", mappedBy="Assignment")
         * @ORM\Column(nullable = true)
 	* @Assert\NotBlank()
 	**/
-	protected $TechTools;
+	protected $TechnologyTools;
 	
 	/**
 	* @ORM\OneToMany(targetEntity="TechCatory", mappedBy="Assignment")
         * @ORM\Column(nullable = true)
 	* @Assert\NotBlank()
 	**/
-	protected $TechCatory;
+	protected $TechnologyCategory;
 	
 	/**
 	* @ORM\Column(type="boolean")
@@ -73,12 +68,14 @@ class Assignment
 	* @ORM\Column(type="text", nullable = true)
 	**/
 	protected $ProjectURL;
-
+	
+	  
     public function __construct()
     {
         $this->Course = new \Doctrine\Common\Collections\ArrayCollection();
     }
-        
+      
+
     /**
      * Get id
      *
@@ -101,7 +98,7 @@ class Assignment
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->Name = $name;
 
         return $this;
     }
@@ -113,7 +110,7 @@ class Assignment
      */
     public function getName()
     {
-        return $this->name;
+        return $this->Name;
     }
 
     /**
@@ -162,28 +159,7 @@ class Assignment
         return $this->LongDescr;
     }
 
-    /**
-     * Set StudentsEnrolled
-     *
-     * @param integer $studentsEnrolled
-     * @return Assignment
-     */
-    public function setStudentsEnrolled($studentsEnrolled)
-    {
-        $this->StudentsEnrolled = $studentsEnrolled;
 
-        return $this;
-    }
-
-    /**
-     * Get StudentsEnrolled
-     *
-     * @return integer 
-     */
-    public function getStudentsEnrolled()
-    {
-        return $this->StudentsEnrolled;
-    }
 
     /**
      * Set Showcase
@@ -323,41 +299,7 @@ class Assignment
         return $this->Semester;
     }
 
-    /**
-     * Set Faculty
-     *
-     * @param string $faculty
-     * @return Assignment
-     */
-    public function setFaculty($faculty)
-    {
-        $this->Faculty = $faculty;
-
-        return $this;
-    }
-
-    /**
-     * Get Faculty
-     *
-     * @return string 
-     */
-    public function getFaculty()
-    {
-        return $this->Faculty;
-    }
-
-    /**
-     * Set TechTools
-     *
-     * @param string $techTools
-     * @return Assignment
-     */
-    public function setTechTools($techTools)
-    {
-        $this->TechTools = $techTools;
-
-        return $this;
-    }
+   
 
     /**
      * Get TechTools
@@ -369,6 +311,19 @@ class Assignment
         return $this->TechTools;
     }
 
+    /**
+     * Set TechCatory
+     *
+     * @param string $techTools
+     * @return Assignment
+     */
+    public function setTechTools($techTools)
+    {
+        $this->TechTools = $techTools;
+
+        return $this;
+    }
+    
     /**
      * Set TechCatory
      *
@@ -390,5 +345,120 @@ class Assignment
     public function getTechCatory()
     {
         return $this->TechCatory;
+    }
+
+    /**
+     * Set BriefDescription
+     *
+     * @param string $briefDescription
+     * @return Assignment
+     */
+    public function setBriefDescription($briefDescription)
+    {
+        $this->BriefDescription = $briefDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get BriefDescription
+     *
+     * @return string 
+     */
+    public function getBriefDescription()
+    {
+        return $this->BriefDescription;
+    }
+
+    /**
+     * Set LongDescription
+     *
+     * @param string $longDescription
+     * @return Assignment
+     */
+    public function setLongDescription($longDescription)
+    {
+        $this->LongDescription = $longDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get LongDescription
+     *
+     * @return string 
+     */
+    public function getLongDescription()
+    {
+        return $this->LongDescription;
+    }
+
+    /**
+     * Set TechnologyTools
+     *
+     * @param string $technologyTools
+     * @return Assignment
+     */
+    public function setTechnologyTools($technologyTools)
+    {
+        $this->TechnologyTools = $technologyTools;
+
+        return $this;
+    }
+
+    /**
+     * Get TechnologyTools
+     *
+     * @return string 
+     */
+    public function getTechnologyTools()
+    {
+        return $this->TechnologyTools;
+    }
+
+    /**
+     * Set TechnologyCatory
+     *
+     * @param string $technologyCatory
+     * @return Assignment
+     */
+    public function setTechnologyCatory($technologyCatory)
+    {
+        $this->TechnologyCatory = $technologyCatory;
+
+        return $this;
+    }
+
+    /**
+     * Get TechnologyCatory
+     *
+     * @return string 
+     */
+    public function getTechnologyCatory()
+    {
+        return $this->TechnologyCatory;
+    }
+
+    /**
+     * Set TechnologyCategory
+     *
+     * @param string $technologyCategory
+     * @return Assignment
+     */
+    public function setTechnologyCategory($technologyCategory)
+    {
+        $this->TechnologyCategory = $technologyCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get TechnologyCategory
+     *
+     * @return string 
+     */
+    public function getTechnologyCategory()
+    {
+        return $this->TechnologyCategory;
     }
 }

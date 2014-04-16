@@ -15,7 +15,7 @@ use Dashboard\AssignmentBundle\Form\Type\CourseType;
 
 
 	/**
-*@Route("/Assignment")
+*@Route("/assignment")
 */
 
 class DefaultController extends Controller
@@ -29,6 +29,17 @@ class DefaultController extends Controller
         $assignments = $em->getRepository('DashboardAssignmentBundle:Assignment')->findAll();
         return array('assignments' => $assignments);
     } 
+	
+	    /**
+     * @Route("/{assignmentid}/view", name="AssignmentView")
+     * @Template()
+     */
+    public function viewAction($assignmentid) {
+        $em = $this->getDoctrine()->getManager();
+        $assignment = $em->getRepository('DashboardAssignmentBundle:Assignment')->find($assignmentid);
+        return array("assignment" => $assignment);
+    }
+
 	   	/**
         * @Route("/newObject")
         * @Template()
@@ -43,11 +54,6 @@ class DefaultController extends Controller
 		$faculty = new Faculty();
 		$faculty -> setfirstName('Song');
 		$faculty -> setlastName('Chen');
-		//$faculty -> setEmail('lr030@bucknell.edu');
-		//$faculty -> setTitle('p');
-		//$faculty -> setDepartment('East Asian');
-
-        //$em->persist($faculty);
         $em->flush();
 		return; 
 		

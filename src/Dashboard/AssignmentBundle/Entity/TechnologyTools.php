@@ -5,12 +5,12 @@ namespace Dashboard\AssignmentBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TechCategory
+ * TechnologyTools
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Dashboard\CourseBundle\Entity\TechCategoryRepository")
+ * @ORM\Entity(repositoryClass="Dashboard\AssignmentBundle\Entity\TechnologyToolsRepository")
  */
-class TechCategory
+class TechnologyTools
 {
     /**
      * @var integer
@@ -24,7 +24,7 @@ class TechCategory
     /**
      * @var string
      *
-     * @ORM\Column(name="Name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
@@ -40,33 +40,10 @@ class TechCategory
     }
 
     /**
-     * Set y
-     *
-     * @param string $y
-     * @return TechCategory
-     */
-    public function setY($y)
-    {
-        $this->y = $y;
-
-        return $this;
-    }
-
-    /**
-     * Get y
-     *
-     * @return string 
-     */
-    public function getY()
-    {
-        return $this->y;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
-     * @return TechCategory
+     * @return TechnologyTools
      */
     public function setName($name)
     {

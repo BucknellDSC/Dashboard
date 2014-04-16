@@ -1,0 +1,26 @@
+{% extends "::base.html.twig" %}
+{% block sidebar %}
+<a href ="{{path('NewAssignment')}}">Add Assignment</a> <br>
+<a href ="{{path('AssignmentIndex')}}">Index</a>
+{% endblock %}
+{% block body %}
+<table class="table">
+    <tr>
+		<th>Assignment Name</th>
+		<th>Brief Description</th>
+		<th>Course</th>
+		<th>Technology Tools</th>
+		<th>Technology Category</th>
+		<th>Project URL</th>
+    </tr>
+    <tr>
+		<td>{{ assignment.name }}</td>
+		<td>{{ assignment.BriefDescr }}</td>
+		<td>{{ assignment.course.name}}</td>
+		<td>{% for TechTools in assignment.TechTools %} {{ TechTools.name }} <br> {% endfor %}</td>
+		<td>{% for TechCatory in assignment.TechCatory %} {{ TechCatory.name }} <br> {% endfor %}</td>
+		<td>{{ assignment.ProjectURL }}</td>
+    </tr>   
+</table>
+
+{% endblock %}

@@ -1,9 +1,26 @@
 {% extends "::base.html.twig" %}
-
+{% block sidebar %}
+<a href="{{path('newAssignment')}}">Add Assignment</a>
+{% endblock %}
 {% block body %}
-<h4>name    Brief Description    Course    Semester</h4>
+<table class="table">
+	<tr>
+		<th>Assignment Name</th>
+		<th>Brief Description</th>
+		<th>Course</th>
+		<th>Technology Tools</th>
+		<th>Technology Category</th>
+		<th>Project URL</th>
+	</tr>
 {% for assignment in assignments %}
-{{ assignment.name }}    {{ assignment.BriefDescr}}
-<br>
+	<tr>
+		<td><a href="{{ path('AssignmentView', {'assignmentid' : assignment.id}) }}">{{ assignment.name }}</a></td>
+		<td>{{ assignment.BriefDescription }}</td>
+		<td><a href="{{ path('CourseView', {'courseid' : assignment.course.id}) }}">{{ assignment.course.name}}</a></td>
+		<td>{% for TechTools in assignment.TechnologyTools %} {{ assignment.TechTools.name }} <br> {% endfor %}</td>
+		<td>{% for TechCatory in assignment.TechnologyCategory %} {{ assignment.TechCatory.name }} <br> {% endfor %}</td>
+		<td>{{ assignment.ProjectURL }}</td>
+	</tr>
 {% endfor %}
+</table>
 {% endblock %}
