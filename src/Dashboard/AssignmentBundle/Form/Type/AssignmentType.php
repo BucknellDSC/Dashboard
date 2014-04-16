@@ -18,10 +18,12 @@ class AssignmentType extends AbstractType
 				'property' => 'name'))
             ->add('TechnologyCategory', 'entity', array(
 				'class' => 'DashboardAssignmentBundle:TechnologyCategory',
-				'property' => 'name'))
+				'property' => 'name',
+				'multiple' => true))
             ->add('TechnologyTools', 'entity', array(
 				'class' => 'DashboardAssignmentBundle:TechnologyTools',
-				'property' => 'name'))
+				'property' => 'name',
+				'multiple' => true))
             ->add('Showcase', 'checkbox')
             ->add('ProjectURL', 'text')
 			->add('save', 'submit');

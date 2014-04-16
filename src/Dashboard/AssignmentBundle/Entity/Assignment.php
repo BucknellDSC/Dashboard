@@ -40,21 +40,21 @@ class Assignment
 	
 	/**
 	* @ORM\ManyToOne(targetEntity="Course", inversedBy="Assignment")
-        * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
+    * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
 	* @Assert\NotBlank()
 	**/
 	protected $Course;
 
 	/**
-	* @ORM\OneToMany(targetEntity="TechnologyTools", mappedBy="Assignment")
-        * @ORM\Column(nullable = true)
+	* @ORM\ManyToMany(targetEntity="TechnologyTools")
+
 	* @Assert\NotBlank()
 	**/
 	protected $TechnologyTools;
 	
 	/**
-	* @ORM\OneToMany(targetEntity="TechnologyCategory", mappedBy="Assignment")
-        * @ORM\Column(nullable = true)
+	* @ORM\ManyToMany(targetEntity="TechnologyCategory")
+    
 	* @Assert\NotBlank()
 	**/
 	protected $TechnologyCategory;

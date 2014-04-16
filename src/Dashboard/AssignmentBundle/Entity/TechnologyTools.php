@@ -28,7 +28,10 @@ class TechnologyTools
      */
     private $name;
 
-
+        /**
+	* @ORM\ManyToMany(targetEntity="Assignment")
+	**/
+	protected $Assignments;
     /**
      * Get id
      *

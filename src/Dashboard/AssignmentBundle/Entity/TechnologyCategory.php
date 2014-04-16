@@ -29,6 +29,12 @@ class TechnologyCategory
     private $name;
 
 
+        /**
+	* @ORM\ManyToMany(targetEntity="Assignment")
+	**/
+	protected $Assignments;
+       
+
     /**
      * Get id
      *

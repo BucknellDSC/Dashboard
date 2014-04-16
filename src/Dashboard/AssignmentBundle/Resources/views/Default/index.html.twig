@@ -17,8 +17,8 @@
 		<td><a href="{{ path('AssignmentView', {'assignmentid' : assignment.id}) }}">{{ assignment.name }}</a></td>
 		<td>{{ assignment.BriefDescription }}</td>
 		<td><a href="{{ path('CourseView', {'courseid' : assignment.course.id}) }}">{{ assignment.course.name}}</a></td>
-		<td>{% for TechTools in assignment.TechnologyTools %} {{ assignment.TechTools.name }} <br> {% endfor %}</td>
-		<td>{% for TechCatory in assignment.TechnologyCategory %} {{ assignment.TechCatory.name }} <br> {% endfor %}</td>
+		<td>{% for TechTools in assignment.TechnologyTools %} {{ TechTools.name }} <br> {% endfor %}</td>
+		<td>{% for TechCatory in assignment.TechnologyCategory %} {{ TechCatory.name }} <br> {% endfor %}</td>
 		<td>{{ assignment.ProjectURL }}</td>
 	</tr>
 {% endfor %}
