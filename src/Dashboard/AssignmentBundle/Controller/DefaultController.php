@@ -85,6 +85,19 @@ class DefaultController extends Controller
             'form' => $form->createView(),
                    ));
 		}
+		
+	    /**
+     * @Route("{assignmentid}/delete", name="DeleteAssignment")
+     * @Template()
+     */
+    public function deleteAction($assignmentid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $assignment = $em->getRepository('DashboardAssignmentBundle:Assignment')->find($assignmentid);
+        $em->remove($assignment);
+        $em->flush();
+        return $this->redirect($this->generateUrl('AssignmentIndex'));
+    }
 }
 
 
