@@ -18,6 +18,7 @@ class CourseType extends AbstractType
 				'class' => 'DashboardAssignmentBundle:Faculty',
 				'property' => 'FullName',
 				'multiple' => true,
+				'expanded' => true
 			))
 			/*->add('Semester', 'entity', array(
 		  		'class' => 'DashboardAssignmentBundle:Semester',
