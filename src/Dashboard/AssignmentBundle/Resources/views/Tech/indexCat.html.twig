@@ -1,15 +1,17 @@
 {% extends "::base.html.twig" %}
 {% block sidebar %}
-<a href ="{{path('NewTechCat')}}">Add Technology Category</a>
+<a href ="{{path('Home')}}">Home</a> <br>
+<a href ="{{path('NewTechCat')}}">Add</a>
 {% endblock %}
 {% block body %}
 <table class="table">
     <tr>
         <th>Category Name</th>
     </tr>
-{% for Cat in TechnologyCategory %}
+{% for cat in TechnologyCategory %}
     <tr>
-        <td>{{ Cat.name }}</td>
+        <td><a href="{{ path('CatView', {'catid' : cat.id}) }}">{{ cat.name }}</a></td>
+		<td><a href="{{ path('DeleteCat', {'catid' : cat.id}) }}">Delete</a></td>
     </tr>
 {% endfor %}    
 </table>

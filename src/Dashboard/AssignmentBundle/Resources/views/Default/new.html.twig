@@ -1,6 +1,8 @@
 
 {% extends "::base.html.twig" %}
-
+{% block sidebar %}
+<a href ="{{path('Home')}}">Home</a> <br>
+{% endblock %}
 {% block body %}
 
 {{form(form, {'attr': {'novalidate': 'novalidate'}}) }}

@@ -1,0 +1,38 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+<h3>Welcome to ITEC Dashboard!</h3>
+<table class="table">
+    <tr>
+        <th>Entity</th>
+		<th>Index</th>
+		<th>Add</th>
+    </tr>		
+    <tr>
+		<td>Assignment</td>        
+		<td><a href="{{ path('AssignmentIndex') }}">View All Assignments</a></td>
+		<td><a href="{{ path('newAssignment') }}">New Assignment</a></td>
+    </tr>
+	<tr>
+		<td>Course</td>        
+		<td><a href="{{ path('CourseIndex') }}">View All Courses</a></td>
+		<td><a href="{{ path('NewCourse') }}">New Course</a></td>
+    </tr>
+	<tr>
+		<td>Faculty</td>        
+		<td><a href="{{ path('FacultyIndex') }}">View All Faculty</a></td>
+		<td><a href="{{ path('NewFaculty') }}">New Faculty</a></td>
+    </tr>
+	<tr>
+		<td>Technology Tools</td>        
+		<td><a href="{{ path('ToolIndex') }}">View All Technology Tools</a></td>
+		<td><a href="{{ path('NewTechTools') }}">New Technology Tool</a></td>
+    </tr>
+	<tr>
+		<td>Technology Category</td>        
+		<td><a href="{{ path('CatIndex') }}">View All Technology Categories</a></td>
+		<td><a href="{{ path('NewTechCat') }}">New Technology Category</a></td>
+    </tr>
+ 
+ 
+</table>
+{% endblock %}

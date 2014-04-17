@@ -53,7 +53,7 @@ class CourseController extends Controller {
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($course);
                         $em->flush();
-			return $this->redirect($this->generateUrl('CourseIndex'));//need to add a CourseIndex function
+			return $this->redirect($this->generateUrl('CourseIndex'));
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(

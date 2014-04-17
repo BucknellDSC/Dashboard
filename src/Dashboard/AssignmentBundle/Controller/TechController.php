@@ -19,9 +19,11 @@ use Symfony\Component\HttpFoundation\Response;
 */
 
 class TechController extends Controller {
+	
+	//////////////////////////////////////Index/////////////////////////////////////////
     
     /**
-     * @Route("/toolindex", name="TechToolIndex")
+     * @Route("/toolindex", name="ToolIndex")
      * @Template()
      */
     public function indexToolAction() {
@@ -32,7 +34,7 @@ class TechController extends Controller {
     }
 	
 	    /**
-     * @Route("/catindex", name="TechCatIndex")
+     * @Route("/catindex", name="CatIndex")
      * @Template()
      */
     public function indexCatAction() {
@@ -41,6 +43,29 @@ class TechController extends Controller {
         $category = $em->getRepository('DashboardAssignmentBundle:TechnologyCategory')->findAll();
         return array("TechnologyCategory" => $category);
     }
+	
+	/////////////////////////////////////////View////////////////////////////////////////////
+	/**
+     * @Route("/tool/{toolid}/view", name="ToolView")
+     * @Template()
+    */
+    public function viewToolAction($toolid) {
+        $em = $this->getDoctrine()->getManager();
+        $tool = $em->getRepository('DashboardAssignmentBundle:TechnologyTools')->find($toolid);
+        return array("tool" => $tool);
+    }
+	
+	/**
+     * @Route("/cat/{catid}/view", name="CatView")
+     * @Template()
+    */
+    public function viewCatAction($catid) {
+        $em = $this->getDoctrine()->getManager();
+        $cat = $em->getRepository('DashboardAssignmentBundle:TechnologyCategory')->find($catid);
+        return array("cat" => $cat);
+    }
+	
+	//////////////////////////////////////////New/////////////////////////////////
     
     /**
      * @Route("/newTool", name="NewTechTools")
@@ -56,7 +81,7 @@ class TechController extends Controller {
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($tools);
                         $em->flush();
-			return $this->redirect($this->generateUrl('TechToolIndex'));
+			return $this->redirect($this->generateUrl('ToolIndex'));
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
@@ -79,12 +104,39 @@ class TechController extends Controller {
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($category);
                         $em->flush();
-			return $this->redirect($this->generateUrl('TechCatIndex'));
+			return $this->redirect($this->generateUrl('CatIndex'));
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
             'form' => $form->createView(),
                    ));
        
+    }
+	
+	//////////////////////////////////////////////Delete//////////////////////
+	/**
+     * @Route("tool/{toolid}/delete", name="DeleteTool")
+     * @Template()
+     */
+    public function deleteToolAction($toolid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tool = $em->getRepository('DashboardAssignmentBundle:TechnologyTools')->find($toolid);
+        $em->remove($tool);
+        $em->flush();
+        return $this->redirect($this->generateUrl('ToolIndex'));
+    }
+	
+		/**
+     * @Route("cat/{catid}/delete", name="DeleteCat")
+     * @Template()
+     */
+    public function deleteCatAction($catid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $cat = $em->getRepository('DashboardAssignmentBundle:TechnologyCategory')->find($catid);
+        $em->remove($cat);
+        $em->flush();
+        return $this->redirect($this->generateUrl('CatIndex'));
     }
 }

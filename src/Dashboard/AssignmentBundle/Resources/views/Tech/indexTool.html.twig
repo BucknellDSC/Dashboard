@@ -1,6 +1,7 @@
 {% extends "::base.html.twig" %}
 {% block sidebar %}
-<a href ="{{path('NewTechTools')}}">Add Technology Tools</a>
+<a href ="{{path('Home')}}">Home</a>  <br>
+<a href ="{{path('NewTechTools')}}">Add</a>
 {% endblock %}
 {% block body %}
 <table class="table">
@@ -9,7 +10,8 @@
     </tr>
 {% for tool in TechnologyTools %}
     <tr>
-        <td>{{ tool.name }}</td>
+        <td><a href="{{ path('ToolView', {'toolid' : tool.id}) }}">{{ tool.name }}</a></td>
+		<td><a href="{{ path('DeleteTool', {'toolid' : tool.id}) }}">Delete</a></td>
     </tr>
 {% endfor %}    
 </table>
