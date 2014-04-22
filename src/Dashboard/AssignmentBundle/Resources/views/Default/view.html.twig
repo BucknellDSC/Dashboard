@@ -16,10 +16,10 @@
     </tr>
     <tr>
 		<td>{{ assignment.name }}</td>
-		<td>{{ assignment.BriefDescr }}</td>
+		<td>{{ assignment.BriefDescription }}</td>
 		<td>{{ assignment.course.name}}</td>
-		<td>{% for TechTools in assignment.TechTools %} {{ TechTools.name }} <br> {% endfor %}</td>
-		<td>{% for TechCatory in assignment.TechCatory %} {{ TechCatory.name }} <br> {% endfor %}</td>
+		<td>{% for TechTools in assignment.TechnologyTools %} {{ TechTools.name }} <br> {% endfor %}</td>
+		<td>{% for TechCatory in assignment.TechnologyCategory %} {{ TechCatory.name }} <br> {% endfor %}</td>
 		<td>{{ assignment.ProjectURL }}</td>
     </tr>   
 </table>
