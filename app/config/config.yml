@@ -74,5 +74,11 @@ assetic:
              file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
              apply_to: "\.less$"
         cssrewrite: ~
+        
 braincrafted_bootstrap:
     less_filter: lessphp
+    
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Dashboard\UserBundle\Entity\User

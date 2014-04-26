@@ -43,9 +43,11 @@ class CourseController extends Controller {
      * @Route("/new", name="NewCourse")
      */
     public function newCourseAction(Request $request) {
-        $course = new Course();
-			
+                $course = new Course();
+		$user = $this->getUser();
+                $course->setCreator($user);
 		$form = $this ->createForm(new CourseType(), $course);
+                
 			
 		$form->handleRequest($request);
 		

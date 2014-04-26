@@ -53,6 +53,11 @@ class Course
 	* @ORM\ManyToMany(targetEntity="Faculty")
 	**/	
         protected $Faculty;
+        
+        /**
+         * @ORM\ManyToOne(targetEntity="Dashboard\UserBundle\Entity\User", inversedBy="Courses")
+         */
+        protected $Creator;
 	
      /**
      * Constructor
@@ -245,5 +250,15 @@ class Course
     public function getCourseNumber()
     {
         return $this->CourseNumber;
+    }
+
+    /**
+     * Get Assignments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAssignments()
+    {
+        return $this->Assignments;
     }
 }

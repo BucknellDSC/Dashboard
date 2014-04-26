@@ -53,6 +53,11 @@ class Course
 	* @ORM\ManyToMany(targetEntity="Faculty")
 	**/	
         protected $Faculty;
+        
+        /**
+         * @ORM\ManyToOne(targetEntity="Dashboard\UserBundle\Entity\User", inversedBy="Courses")
+         */
+        protected $Creator;
 	
      /**
      * Constructor
@@ -255,5 +260,28 @@ class Course
     public function getAssignments()
     {
         return $this->Assignments;
+    }
+
+    /**
+     * Set Creator
+     *
+     * @param \Dashboard\UserBundle\Entity\User $creator
+     * @return Course
+     */
+    public function setCreator(\Dashboard\UserBundle\Entity\User $creator = null)
+    {
+        $this->Creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Get Creator
+     *
+     * @return \Dashboard\UserBundle\Entity\User 
+     */
+    public function getCreator()
+    {
+        return $this->Creator;
     }
 }
