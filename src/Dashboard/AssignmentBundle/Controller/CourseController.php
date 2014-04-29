@@ -24,7 +24,8 @@ class CourseController extends Controller {
     public function indexAction() {
         
         $em = $this->getDoctrine()->getManager();
-        $courses = $em->getRepository('DashboardAssignmentBundle:Course')->findAll();
+        $user = $this->getUser();
+        $courses = $em->getRepository('DashboardAssignmentBundle:Course')->findByCreator($user);
         return array("courses" => $courses);
     } 
     

@@ -57,7 +57,7 @@ class Course
         /**
          * @ORM\ManyToOne(targetEntity="Dashboard\UserBundle\Entity\User", inversedBy="Courses")
          */
-        protected $Creator;
+        protected $creator;
 	
      /**
      * Constructor
