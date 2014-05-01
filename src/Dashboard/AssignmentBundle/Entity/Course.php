@@ -45,7 +45,7 @@ class Course
 	protected $StudentsEnrolled;
         
 	/**
-         * @ORM\Column(type="array")
+         * @ORM\Column(type="string")
          */
         protected $Department;
 	
