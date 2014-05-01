@@ -1,1 +1,21 @@
-Hello {{ name }}!
+{% extends "::base.html.twig" %}
+{% block sidebar %}
+<br>
+<a href ="{{path('Home')}}">Home</a>  <br>
+{% endblock %}
+{% block body %}
+
+<table class="table">
+    <tr>
+        <th>Username</th>
+        <th>email</th>
+    </tr>
+	{% for user in users%}
+    <tr>
+        <td><a href="{{ path('UserView', {userid: user.id}) }}">{{ user.username }}</a></td>
+        <td>{{ user.email }}</td>
+    </tr>   
+	{% endfor%}
+</table>
+
+{% endblock %}

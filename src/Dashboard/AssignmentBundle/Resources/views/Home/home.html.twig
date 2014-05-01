@@ -1,6 +1,7 @@
 {% extends "::base.html.twig" %}
 {% block body %}
 <h3>Welcome to ITEC Dashboard!</h3>
+<p3>View by Entities</p3>
 <table class="table">
     <tr>
         <th>Entity</th>
@@ -32,7 +33,19 @@
 		<td><a href="{{ path('CatIndex') }}">View All Technology Categories</a></td>
 		<td><a href="{{ path('NewTechCat') }}">New Technology Category</a></td>
     </tr>
- 
- 
+</table>
+
+<P3>View by Users</p3>
+<table class="table">
+{% for user in users %}
+	<tr>
+		<th>Username</th>
+		<th>Email</th>
+	</tr>
+	<tr>		
+		<td><a href="{{ path('UserView', {userid: user.id}) }}">{{ user.username }}</a></td>
+		<td>{{ user.email }}</td>
+	</tr>
+{% endfor %}
 </table>
 {% endblock %}

@@ -12,6 +12,7 @@ use Dashboard\AssignmentBundle\Entity\Faculty;
 use Symfony\Component\httpFoundation\Request;
 use Dashboard\AssignmentBundle\Form\Type\AssignmentType;
 use Dashboard\AssignmentBundle\Form\Type\CourseType;
+use Dashboard\UserBundle\Entity\User;
 
 
 class HomeController extends Controller
@@ -22,7 +23,10 @@ class HomeController extends Controller
 */
 
 	function HomeAction(){
-   return $this->render('DashboardAssignmentBundle:Home:home.html.twig');
+	$em = $this->getDoctrine()->getManager();
+	$users = $em->getRepository('DashboardUserBundle:User')->findAll();
+    return $this->render('DashboardAssignmentBundle:Home:home.html.twig', array('users' => $users));
+    //return $this->render('DashboardAssignmentBundle:Home:home.html.twig');
 	}
 }
 

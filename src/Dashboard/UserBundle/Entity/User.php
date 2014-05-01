@@ -22,9 +22,22 @@ class User extends BaseUser
     protected $id;
     
     /**
-     * @ORM\OneToMany(targetEntity="Dashboard\AssignmentBundle\Entity\Course", mappedBy="Creator")
+     * @ORM\OneToMany(targetEntity="Dashboard\AssignmentBundle\Entity\Course", mappedBy="creator")
      */
     protected $Courses;
+	
+    /**
+     * @var string
+     * @ORM\Column(name="FirstName", type="string", length=255)
+     */
+    private $FirstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="LastName", type="string", length=255)
+     */
+    private $LastName;
 
     public function __construct()
     {
@@ -73,5 +86,51 @@ class User extends BaseUser
     public function getCourses()
     {
         return $this->Courses;
+    }
+
+    /**
+     * Set FirstName
+     *
+     * @param string $firstName
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->FirstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get FirstName
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->FirstName;
+    }
+
+    /**
+     * Set LastName
+     *
+     * @param string $lastName
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->LastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get LastName
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->LastName;
     }
 }

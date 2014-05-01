@@ -10,11 +10,15 @@ class CourseType extends AbstractType
 	{
 		$builder
 			//->add('assignment')
-                        ->add('CourseNumber', 'text')
+            ->add('CourseNumber', 'text')
 			->add('name', 'text')
-                        ->add('StudentsEnrolled', 'integer')
-                        ->add('Department', 'text')
-                        ->add('Faculty', 'entity', array(
+            ->add('StudentsEnrolled', 'integer')
+            ->add('Department', 'choice', array(
+				'choices' => array( 'biol' => 'Biology','ceng' => 'Civil Engineering', 'east' => 'East Asian Studies', 'engl' => 'English', 'geog'=> 'Geography',),
+				'multiple' => true,
+				'expanded' => true
+				))
+             ->add('Faculty', 'entity', array(
 				'class' => 'DashboardAssignmentBundle:Faculty',
 				'property' => 'FullName',
 				'multiple' => true,

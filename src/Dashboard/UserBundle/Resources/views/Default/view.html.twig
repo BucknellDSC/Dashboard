@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+{% block sidebar %}
+<br>
+<a href ="{{path('Home')}}">Home</a>  <br>
+<a href ="{{path('UserIndex')}}">Index</a>
+{% endblock %}
+{% block body %}
+<h4>User information</h4>
+<table class="table">
+    <tr>
+        <th>Username</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+    </tr>   
+</table>
+<h4>Courses Created by {{user.username}}</h4>
+<table class="table">
+    {% for course in user.Courses %}
+    <tr>
+        <td><a href={{ path('CourseView', {courseid: course.id}) }}>{{course.name}}</a></td>
+        <td>{% for faculty in course.faculty %} {{ faculty.FullName}} <br> {% endfor %}</td> 
+        <td>{{course.department}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

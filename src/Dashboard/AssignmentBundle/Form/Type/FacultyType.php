@@ -13,7 +13,11 @@ class FacultyType extends AbstractType
                         ->add('LastName', 'text')
                         ->add('Email', 'text')
                         ->add('Title', 'text')
-                        ->add('Department', 'text')
+                        ->add('Department', 'choice', array(
+							'choices' => array( 'biol' => 'Biology','ceng' => 'Civil Engineering', 'east' => 'East Asian Studies', 'engl' => 'English', 'geog'=> 'Geography'),
+							'multiple' => true,
+							'expanded' => true
+						))
 		  ->add('save', 'submit');
 	}	
 	
