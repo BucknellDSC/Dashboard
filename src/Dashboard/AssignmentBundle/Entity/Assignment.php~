@@ -24,50 +24,50 @@ class Assignment
 	/**
 	 * @ORM\Column(type="string")
 	**/
-	protected $Name;
+	protected $name;
 	
 	/**
-         * @ORM\Column(type="text")
+     * @ORM\Column(type="text")
 	 * @Assert\NotBlank()
 	**/
-	protected $BriefDescription;
+	protected $briefdescription;
 	
 	/**
 	 * @ORM\Column(type="text")
 	 * @ORM\Column(nullable = true)
 	**/
-	protected $LongDescription;
+	protected $longdescription;
 	
 	/**
 	* @ORM\ManyToOne(targetEntity="Course", inversedBy="Assignment")
-        * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
+    * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
 	* @Assert\NotBlank()
 	**/
-	protected $Course;
+	protected $course;
 
 	/**
-	* @ORM\OneToMany(targetEntity="TechTools", mappedBy="Assignment")
-        * @ORM\Column(nullable = true)
+	* @ORM\ManyToMany(targetEntity="TechnologyTools")
+
 	* @Assert\NotBlank()
 	**/
-	protected $TechnologyTools;
+	protected $technologytools;
 	
 	/**
-	* @ORM\OneToMany(targetEntity="TechCatory", mappedBy="Assignment")
-        * @ORM\Column(nullable = true)
+	* @ORM\ManyToMany(targetEntity="TechnologyCategory")
+    
 	* @Assert\NotBlank()
 	**/
-	protected $TechnologyCategory;
+	protected $technologycategory;
 	
 	/**
 	* @ORM\Column(type="boolean")
 	**/
-	protected $Showcase = False;
+	protected $showcase = False;
 	
         /**
 	* @ORM\Column(type="text", nullable = true)
 	**/
-	protected $ProjectURL;
+	protected $projecturl;
 	
 	  
     public function __construct()
@@ -85,10 +85,141 @@ class Assignment
     {
         return $this->id;
     }
+
     /**
-     * Constructor
+     * Set briefdescription
+     *
+     * @param string $briefdescription
+     * @return Assignment
      */
-   
+    public function setBriefdescription($briefdescription)
+    {
+        $this->briefdescription = $briefdescription;
+
+        return $this;
+    }
+
+    /**
+     * Get briefdescription
+     *
+     * @return string 
+     */
+    public function getBriefdescription()
+    {
+        return $this->briefdescription;
+    }
+
+    /**
+     * Set longdescription
+     *
+     * @param string $longdescription
+     * @return Assignment
+     */
+    public function setLongdescription($longdescription)
+    {
+        $this->longdescription = $longdescription;
+
+        return $this;
+    }
+
+    /**
+     * Get longdescription
+     *
+     * @return string 
+     */
+    public function getLongdescription()
+    {
+        return $this->longdescription;
+    }
+
+    /**
+     * Set projecturl
+     *
+     * @param string $projecturl
+     * @return Assignment
+     */
+    public function setProjecturl($projecturl)
+    {
+        $this->projecturl = $projecturl;
+
+        return $this;
+    }
+
+    /**
+     * Get projecturl
+     *
+     * @return string 
+     */
+    public function getProjecturl()
+    {
+        return $this->projecturl;
+    }
+
+    /**
+     * Add technologytools
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\TechnologyTools $technologytools
+     * @return Assignment
+     */
+    public function addTechnologytool(\Dashboard\AssignmentBundle\Entity\TechnologyTools $technologytools)
+    {
+        $this->technologytools[] = $technologytools;
+
+        return $this;
+    }
+
+    /**
+     * Remove technologytools
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\TechnologyTools $technologytools
+     */
+    public function removeTechnologytool(\Dashboard\AssignmentBundle\Entity\TechnologyTools $technologytools)
+    {
+        $this->technologytools->removeElement($technologytools);
+    }
+
+    /**
+     * Get technologytools
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTechnologytools()
+    {
+        return $this->technologytools;
+    }
+
+    /**
+     * Add technologycategory
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\TechnologyCategory $technologycategory
+     * @return Assignment
+     */
+    public function addTechnologycategory(\Dashboard\AssignmentBundle\Entity\TechnologyCategory $technologycategory)
+    {
+        $this->technologycategory[] = $technologycategory;
+
+        return $this;
+    }
+
+    /**
+     * Remove technologycategory
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\TechnologyCategory $technologycategory
+     */
+    public function removeTechnologycategory(\Dashboard\AssignmentBundle\Entity\TechnologyCategory $technologycategory)
+    {
+        $this->technologycategory->removeElement($technologycategory);
+    }
+
+    /**
+     * Get technologycategory
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTechnologycategory()
+    {
+        return $this->technologycategory;
+    }
 
     /**
      * Set name
@@ -98,7 +229,7 @@ class Assignment
      */
     public function setName($name)
     {
-        $this->Name = $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -110,355 +241,52 @@ class Assignment
      */
     public function getName()
     {
-        return $this->Name;
+        return $this->name;
     }
 
     /**
-     * Set BriefDescr
-     *
-     * @param string $briefDescr
-     * @return Assignment
-     */
-    public function setBriefDescr($briefDescr)
-    {
-        $this->BriefDescr = $briefDescr;
-
-        return $this;
-    }
-
-    /**
-     * Get BriefDescr
-     *
-     * @return string 
-     */
-    public function getBriefDescr()
-    {
-        return $this->BriefDescr;
-    }
-
-    /**
-     * Set LongDescr
-     *
-     * @param string $longDescr
-     * @return Assignment
-     */
-    public function setLongDescr($longDescr)
-    {
-        $this->LongDescr = $longDescr;
-
-        return $this;
-    }
-
-    /**
-     * Get LongDescr
-     *
-     * @return string 
-     */
-    public function getLongDescr()
-    {
-        return $this->LongDescr;
-    }
-
-
-
-    /**
-     * Set Showcase
+     * Set showcase
      *
      * @param boolean $showcase
      * @return Assignment
      */
     public function setShowcase($showcase)
     {
-        $this->Showcase = $showcase;
+        $this->showcase = $showcase;
 
         return $this;
     }
 
     /**
-     * Get Showcase
+     * Get showcase
      *
      * @return boolean 
      */
     public function getShowcase()
     {
-        return $this->Showcase;
+        return $this->showcase;
     }
 
     /**
-     * Set ProjectURL
-     *
-     * @param string $projectURL
-     * @return Assignment
-     */
-    public function setProjectURL($projectURL)
-    {
-        $this->ProjectURL = $projectURL;
-
-        return $this;
-    }
-
-    /**
-     * Get ProjectURL
-     *
-     * @return string 
-     */
-    public function getProjectURL()
-    {
-        return $this->ProjectURL;
-    }
-
-    /**
-     * Set KeyWords
-     *
-     * @param string $keyWords
-     * @return Assignment
-     */
-    public function setKeyWords($keyWords)
-    {
-        $this->KeyWords = $keyWords;
-
-        return $this;
-    }
-
-    /**
-     * Get KeyWords
-     *
-     * @return string 
-     */
-    public function getKeyWords()
-    {
-        return $this->KeyWords;
-    }
-
-    /**
-     * Add Course
+     * Set course
      *
      * @param \Dashboard\AssignmentBundle\Entity\Course $course
      * @return Assignment
      */
-    public function addCourse(\Dashboard\AssignmentBundle\Entity\Course $course)
+    public function setCourse(\Dashboard\AssignmentBundle\Entity\Course $course = null)
     {
-        $this->Course[] = $course;
+        $this->course = $course;
 
         return $this;
     }
 
     /**
-     * Remove Course
+     * Get course
      *
-     * @param \Dashboard\AssignmentBundle\Entity\Course $course
-     */
-    public function removeCourse(\Dashboard\AssignmentBundle\Entity\Course $course)
-    {
-        $this->Course->removeElement($course);
-    }
-
-    /**
-     * Get Course
-     *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Dashboard\AssignmentBundle\Entity\Course 
      */
     public function getCourse()
     {
-        return $this->Course;
-    }
-
-    /**
-     * Set Course
-     *
-     * @param string $course
-     * @return Assignment
-     */
-    public function setCourse($course)
-    {
-        $this->Course = $course;
-
-        return $this;
-    }
-
-    /**
-     * Set Semester
-     *
-     * @param string $semester
-     * @return Assignment
-     */
-    public function setSemester($semester)
-    {
-        $this->Semester = $semester;
-
-        return $this;
-    }
-
-    /**
-     * Get Semester
-     *
-     * @return string 
-     */
-    public function getSemester()
-    {
-        return $this->Semester;
-    }
-
-   
-
-    /**
-     * Get TechTools
-     *
-     * @return string 
-     */
-    public function getTechTools()
-    {
-        return $this->TechTools;
-    }
-
-    /**
-     * Set TechCatory
-     *
-     * @param string $techTools
-     * @return Assignment
-     */
-    public function setTechTools($techTools)
-    {
-        $this->TechTools = $techTools;
-
-        return $this;
-    }
-    
-    /**
-     * Set TechCatory
-     *
-     * @param string $techCatory
-     * @return Assignment
-     */
-    public function setTechCatory($techCatory)
-    {
-        $this->TechCatory = $techCatory;
-
-        return $this;
-    }
-
-    /**
-     * Get TechCatory
-     *
-     * @return string 
-     */
-    public function getTechCatory()
-    {
-        return $this->TechCatory;
-    }
-
-    /**
-     * Set BriefDescription
-     *
-     * @param string $briefDescription
-     * @return Assignment
-     */
-    public function setBriefDescription($briefDescription)
-    {
-        $this->BriefDescription = $briefDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get BriefDescription
-     *
-     * @return string 
-     */
-    public function getBriefDescription()
-    {
-        return $this->BriefDescription;
-    }
-
-    /**
-     * Set LongDescription
-     *
-     * @param string $longDescription
-     * @return Assignment
-     */
-    public function setLongDescription($longDescription)
-    {
-        $this->LongDescription = $longDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get LongDescription
-     *
-     * @return string 
-     */
-    public function getLongDescription()
-    {
-        return $this->LongDescription;
-    }
-
-    /**
-     * Set TechnologyTools
-     *
-     * @param string $technologyTools
-     * @return Assignment
-     */
-    public function setTechnologyTools($technologyTools)
-    {
-        $this->TechnologyTools = $technologyTools;
-
-        return $this;
-    }
-
-    /**
-     * Get TechnologyTools
-     *
-     * @return string 
-     */
-    public function getTechnologyTools()
-    {
-        return $this->TechnologyTools;
-    }
-
-    /**
-     * Set TechnologyCatory
-     *
-     * @param string $technologyCatory
-     * @return Assignment
-     */
-    public function setTechnologyCatory($technologyCatory)
-    {
-        $this->TechnologyCatory = $technologyCatory;
-
-        return $this;
-    }
-
-    /**
-     * Get TechnologyCatory
-     *
-     * @return string 
-     */
-    public function getTechnologyCatory()
-    {
-        return $this->TechnologyCatory;
-    }
-
-    /**
-     * Set TechnologyCategory
-     *
-     * @param string $technologyCategory
-     * @return Assignment
-     */
-    public function setTechnologyCategory($technologyCategory)
-    {
-        $this->TechnologyCategory = $technologyCategory;
-
-        return $this;
-    }
-
-    /**
-     * Get TechnologyCategory
-     *
-     * @return string 
-     */
-    public function getTechnologyCategory()
-    {
-        return $this->TechnologyCategory;
+        return $this->course;
     }
 }

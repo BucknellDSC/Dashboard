@@ -24,21 +24,15 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="Dashboard\AssignmentBundle\Entity\Course", mappedBy="creator")
      */
-    protected $Courses;
+    protected $coursescreate;
 	
-    /**
-     * @var string
-     * @ORM\Column(name="FirstName", type="string", length=255)
+	/**
+     * @ORM\ManyToMany(targetEntity="Dashboard\AssignmentBundle\Entity\Course", mappedBy="follower")
+    */
+    protected $coursesfollow;
+     /**
+     * Constructor
      */
-    private $FirstName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="LastName", type="string", length=255)
-     */
-    private $LastName;
-
     public function __construct()
     {
         parent::__construct();
@@ -63,7 +57,7 @@ class User extends BaseUser
      */
     public function addCourse(\Dashboard\CourseBundle\Entity\Course $courses)
     {
-        $this->Courses[] = $courses;
+        $this->courses[] = $courses;
 
         return $this;
     }
@@ -75,7 +69,7 @@ class User extends BaseUser
      */
     public function removeCourse(\Dashboard\CourseBundle\Entity\Course $courses)
     {
-        $this->Courses->removeElement($courses);
+        $this->courses->removeElement($courses);
     }
 
     /**
@@ -85,52 +79,73 @@ class User extends BaseUser
      */
     public function getCourses()
     {
-        return $this->Courses;
+        return $this->courses;
     }
 
+
     /**
-     * Set FirstName
+     * Add coursescreate
      *
-     * @param string $firstName
+     * @param \Dashboard\AssignmentBundle\Entity\Course $coursescreate
      * @return User
      */
-    public function setFirstName($firstName)
+    public function addCoursescreate(\Dashboard\AssignmentBundle\Entity\Course $coursescreate)
     {
-        $this->FirstName = $firstName;
+        $this->coursescreate[] = $coursescreate;
 
         return $this;
     }
 
     /**
-     * Get FirstName
+     * Remove coursescreate
      *
-     * @return string 
+     * @param \Dashboard\AssignmentBundle\Entity\Course $coursescreate
      */
-    public function getFirstName()
+    public function removeCoursescreate(\Dashboard\AssignmentBundle\Entity\Course $coursescreate)
     {
-        return $this->FirstName;
+        $this->coursescreate->removeElement($coursescreate);
     }
 
     /**
-     * Set LastName
+     * Get coursescreate
      *
-     * @param string $lastName
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCoursescreate()
+    {
+        return $this->coursescreate;
+    }
+
+    /**
+     * Add coursesfollow
+     *
+     * @param \Dashboard\AssignmentBundle\Entity\Course $coursesfollow
      * @return User
      */
-    public function setLastName($lastName)
+    public function addCoursesfollow(\Dashboard\AssignmentBundle\Entity\Course $coursesfollow)
     {
-        $this->LastName = $lastName;
+        $this->coursesfollow[] = $coursesfollow;
 
         return $this;
     }
 
     /**
-     * Get LastName
+     * Remove coursesfollow
      *
-     * @return string 
+     * @param \Dashboard\AssignmentBundle\Entity\Course $coursesfollow
      */
-    public function getLastName()
+    public function removeCoursesfollow(\Dashboard\AssignmentBundle\Entity\Course $coursesfollow)
     {
-        return $this->LastName;
+        $this->coursesfollow->removeElement($coursesfollow);
+    }
+
+    /**
+     * Get coursesfollow
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCoursesfollow()
+    {
+        return $this->coursesfollow;
     }
 }

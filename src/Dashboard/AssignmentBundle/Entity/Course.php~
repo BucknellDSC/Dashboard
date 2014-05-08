@@ -26,38 +26,43 @@ class Course
 	* @ORM\Column(type="string", length=100)
 	* @Assert\NotBlank()
 	**/
-	protected $CourseNumber;
+	protected $coursenumber;
     
 	/**
 	* @ORM\Column(type="string", length=100)
 	* @Assert\NotBlank()
 	**/
-	protected $Name;
+	protected $name;
 	
         /**
-	* @ORM\OneToMany(targetEntity="Assignment", mappedBy="Course")
+	* @ORM\OneToMany(targetEntity="Assignment", mappedBy="course")
 	**/
-	protected $Assignments;
+	protected $assignments;
         
         /**
 	* @ORM\Column(type="integer", nullable = true)
 	**/
-	protected $StudentsEnrolled;
+	protected $studentsenrolled;
         
 	/**
          * @ORM\Column(type="string")
          */
-        protected $Department;
+        protected $department;
 	
 	/**
-	* @ORM\ManyToMany(targetEntity="Faculty")
+	* @ORM\ManyToMany(targetEntity="faculty")
 	**/	
-        protected $Faculty;
+        protected $faculty;
         
-        /**
-         * @ORM\ManyToOne(targetEntity="Dashboard\UserBundle\Entity\User", inversedBy="Courses")
-         */
-        protected $Creator;
+    /**
+     * @ORM\ManyToOne(targetEntity="Dashboard\UserBundle\Entity\User", inversedBy="coursescreate")
+    */
+        protected $creator;
+		
+		/**
+	* @ORM\ManyToMany(targetEntity="Dashboard\UserBundle\Entity\User", inversedBy="coursesfollow")
+	**/	
+        protected $follower;
 	
      /**
      * Constructor
@@ -85,7 +90,7 @@ class Course
      */
     public function setName($name)
     {
-        $this->Name = $name;
+        $this->name = $name;
 
         return $this;
     }
@@ -97,76 +102,54 @@ class Course
      */
     public function getName()
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    /**
-     * Set StudentsEnrolled
-     *
-     * @param integer $studentsEnrolled
-     * @return Course
-     */
-    public function setStudentsEnrolled($studentsEnrolled)
-    {
-        $this->StudentsEnrolled = $studentsEnrolled;
-
-        return $this;
-    }
 
     /**
-     * Get StudentsEnrolled
-     *
-     * @return integer 
-     */
-    public function getStudentsEnrolled()
-    {
-        return $this->StudentsEnrolled;
-    }
-
-    /**
-     * Set Department
+     * Set department
      *
      * @param string $department
      * @return Course
      */
     public function setDepartment($department)
     {
-        $this->Department = $department;
+        $this->department = $department;
 
         return $this;
     }
 
     /**
-     * Get Department
+     * Get department
      *
      * @return string 
      */
     public function getDepartment()
     {
-        return $this->Department;
+        return $this->department;
     }
 	
 	 /**
-     * Set Faculty
+     * Set faculty
      *
      * @param string $faculty
      * @return Assignment
      */
     public function setFaculty($faculty)
     {
-        $this->Faculty = $faculty;
+        $this->faculty = $faculty;
 
         return $this;
     }
 
     /**
-     * Get Faculty
+     * Get faculty
      *
      * @return string 
      */
     public function getFaculty()
     {
-        return $this->Faculty;
+        return $this->faculty;
     }
 
     /**
@@ -206,59 +189,139 @@ class Course
     }
 
     /**
-     * Add Faculty
+     * Add faculty
      *
-     * @param \Dashboard\AssignmentBundle\Entity\Faculty $faculty
+     * @param \Dashboard\AssignmentBundle\Entity\faculty $faculty
      * @return Course
      */
-    public function addFaculty(\Dashboard\AssignmentBundle\Entity\Faculty $faculty)
+    public function addFaculty(\Dashboard\AssignmentBundle\Entity\faculty $faculty)
     {
-        $this->Faculty[] = $faculty;
+        $this->faculty[] = $faculty;
 
         return $this;
     }
 
     /**
-     * Remove Faculty
+     * Remove faculty
      *
-     * @param \Dashboard\AssignmentBundle\Entity\Faculty $faculty
+     * @param \Dashboard\AssignmentBundle\Entity\faculty $faculty
      */
-    public function removeFaculty(\Dashboard\AssignmentBundle\Entity\Faculty $faculty)
+    public function removeFaculty(\Dashboard\AssignmentBundle\Entity\faculty $faculty)
     {
-        $this->Faculty->removeElement($faculty);
+        $this->faculty->removeElement($faculty);
     }
     
     
-    /**
-     * Set CourseNumber
-     *
-     * @param string $courseNumber
-     * @return Course
-     */
-    public function setCourseNumber($courseNumber)
-    {
-        $this->CourseNumber = $courseNumber;
-
-        return $this;
-    }
 
     /**
-     * Get CourseNumber
-     *
-     * @return string 
-     */
-    public function getCourseNumber()
-    {
-        return $this->CourseNumber;
-    }
-
-    /**
-     * Get Assignments
+     * Get assignments
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
     public function getAssignments()
     {
-        return $this->Assignments;
+        return $this->assignments;
+    }
+
+    /**
+     * Set creator
+     *
+     * @param \Dashboard\UserBundle\Entity\User $creator
+     * @return Course
+     */
+    public function setCreator(\Dashboard\UserBundle\Entity\User $creator = null)
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    /**
+     * Get creator
+     *
+     * @return \Dashboard\UserBundle\Entity\User 
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * Add follower
+     *
+     * @param \Dashboard\UserBundle\Entity\User $follower
+     * @return Course
+     */
+    public function addFollower(\Dashboard\UserBundle\Entity\User $follower)
+    {
+        $this->follower[] = $follower;
+
+        return $this;
+    }
+
+    /**
+     * Remove follower
+     *
+     * @param \Dashboard\UserBundle\Entity\User $follower
+     */
+    public function removeFollower(\Dashboard\UserBundle\Entity\User $follower)
+    {
+        $this->follower->removeElement($follower);
+    }
+
+    /**
+     * Get follower
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFollower()
+    {
+        return $this->follower;
+    }
+
+    /**
+     * Set coursenumber
+     *
+     * @param string $coursenumber
+     * @return Course
+     */
+    public function setCoursenumber($coursenumber)
+    {
+        $this->coursenumber = $coursenumber;
+
+        return $this;
+    }
+
+    /**
+     * Get coursenumber
+     *
+     * @return string 
+     */
+    public function getCoursenumber()
+    {
+        return $this->coursenumber;
+    }
+
+    /**
+     * Set studentsenrolled
+     *
+     * @param integer $studentsenrolled
+     * @return Course
+     */
+    public function setStudentsenrolled($studentsenrolled)
+    {
+        $this->studentsenrolled = $studentsenrolled;
+
+        return $this;
+    }
+
+    /**
+     * Get studentsenrolled
+     *
+     * @return integer 
+     */
+    public function getStudentsenrolled()
+    {
+        return $this->studentsenrolled;
     }
 }

@@ -5,12 +5,12 @@ namespace Dashboard\AssignmentBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Semester
+ * KeyWords
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Dashboard\CourseBundle\Entity\SemesterRepository")
+ * @ORM\Entity(repositoryClass="Dashboard\AssignmentBundle\Entity\KeyWordsRepository")
  */
-class Semester
+class KeyWords
 {
     /**
      * @var integer
@@ -21,14 +21,13 @@ class Semester
      */
     private $id;
 
-	/**
-	* @ORM\Column(type="string")
-	**/
-	protected $Name;
-	
-	protected $Course;
-	
-	protected $Assignment;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=255)
+     */
+    private $name;
+
 
     /**
      * Get id
@@ -41,25 +40,25 @@ class Semester
     }
 
     /**
-     * Set Name
+     * Set name
      *
      * @param string $name
-     * @return Semester
+     * @return KeyWords
      */
     public function setName($name)
     {
-        $this->Name = $name;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get Name
+     * Get name
      *
      * @return string 
      */
     public function getName()
     {
-        return $this->Name;
+        return $this->name;
     }
 }

@@ -1,5 +1,6 @@
 {% extends "::base.html.twig" %}
 {% block sidebar %}
+<br>
 <a href ="{{path('Home')}}">Home</a> <br>
 <a href ="{{path('NewCourse')}}">Add Course</a>
 {% endblock %}
@@ -17,8 +18,19 @@
         <td><a href="{{ path('CourseView', {'courseid' : course.id}) }}">{{ course.name }}</a></td>
         <td>{% for faculty in course.faculty %} {{ faculty.FullName}} <br> {% endfor %}</td> 
         <td>{{course.department}}</td>
+		{% set existBoo = "false" %}
+		{% for follower in course.follower %}
+		{% if follower == user%}
+		<td><a href="{{ path('UnfollowCourse', {'courseid' : course.id}) }}">Unfollow</a></td>
+		{% set existBoo = "true"%}
+		{% endif%}
+		{% endfor%}
+		{% if existBoo == "false" %}
+		<td><a href="{{ path('FollowCourse', {'courseid' : course.id}) }}">Follow</a></td>
+		{% endif%}
+		
         <td><a href="{{ path('DeleteCourse', {'courseid' : course.id}) }}">Delete</a></td>
     </tr>
-{% endfor %}    
+{% endfor %}   
 </table>
 {% endblock %}

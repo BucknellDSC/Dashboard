@@ -10,6 +10,7 @@ use Dashboard\AssignmentBundle\Entity\Faculty;
 use Dashboard\AssignmentBundle\Form\Type\CourseType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Dashboard\UserBundle\Entity\User;
 
 
 
@@ -26,7 +27,7 @@ class CourseController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $courses = $em->getRepository('DashboardAssignmentBundle:Course')->findAll(); //findByCreator($user);
-        return array("courses" => $courses);
+        return array("courses" => $courses, "user"=>$user);
     } 
     
     /**
@@ -44,12 +45,11 @@ class CourseController extends Controller {
      * @Route("/new", name="NewCourse")
      */
     public function newCourseAction(Request $request) {
-                $course = new Course();
+        $course = new Course();
 		$user = $this->getUser();
-                $course->setCreator($user);
+        $course->setCreator($user);
 		$form = $this ->createForm(new CourseType(), $course);
-                
-			
+               			
 		$form->handleRequest($request);
 		
 		if ($form->isValid()){
@@ -72,6 +72,34 @@ class CourseController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $course = $em->getRepository('DashboardAssignmentBundle:Course')->find($courseid);
         $em->remove($course);
+        $em->flush();
+        return $this->redirect($this->generateUrl('CourseIndex'));
+    }
+	
+	   /**
+     * @Route("{courseid}/follow", name="FollowCourse")
+     * @Template()
+     */
+    public function followAction($courseid)
+    {
+        $em = $this->getDoctrine()->getManager();
+		$follower = $this->getUser();
+        $course = $em->getRepository('DashboardAssignmentBundle:Course')->find($courseid);   
+		$course->addFollower($follower);     
+        $em->flush();
+        return $this->redirect($this->generateUrl('CourseIndex'));
+    }
+	
+	 /**
+     * @Route("{courseid}/unfollow", name="UnfollowCourse")
+     * @Template()
+     */
+    public function unfollowAction($courseid)
+    {
+        $em = $this->getDoctrine()->getManager();
+		$follower = $this->getUser();
+        $course = $em->getRepository('DashboardAssignmentBundle:Course')->find($courseid);   
+		$course->removeFollower($follower);     
         $em->flush();
         return $this->redirect($this->generateUrl('CourseIndex'));
     }

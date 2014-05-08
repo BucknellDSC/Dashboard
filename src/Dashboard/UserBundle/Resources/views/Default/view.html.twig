@@ -18,7 +18,27 @@
 </table>
 <h4>Courses Created by {{user.username}}</h4>
 <table class="table">
-    {% for course in user.Courses %}
+	<tr>
+	<th>Course</th>
+	<th>Faculty</th>
+	<th>Department</th>
+	</tr>
+    {% for course in user.coursescreate %}
+    <tr>
+        <td><a href={{ path('CourseView', {courseid: course.id}) }}>{{course.name}}</a></td>
+        <td>{% for faculty in course.faculty %} {{ faculty.FullName}} <br> {% endfor %}</td> 
+        <td>{{course.department}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h4>Courses {{user.username}} is following:</h4>
+<table class="table">
+	<tr>
+	<th>Course</th>
+	<th>Faculty</th>
+	<th>Department</th>
+	</tr>
+    {% for course in user.coursesfollow %}
     <tr>
         <td><a href={{ path('CourseView', {courseid: course.id}) }}>{{course.name}}</a></td>
         <td>{% for faculty in course.faculty %} {{ faculty.FullName}} <br> {% endfor %}</td> 

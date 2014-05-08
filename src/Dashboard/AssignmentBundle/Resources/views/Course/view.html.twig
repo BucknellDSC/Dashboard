@@ -1,5 +1,6 @@
 {% extends "::base.html.twig" %}
 {% block sidebar %}
+<br>
 <a href ="{{path('Home')}}">Home</a>  <br>
 <a href ="{{path('NewCourse')}}">Add Course</a> <br>
 <a href ="{{path('CourseIndex')}}">Index</a>
@@ -11,12 +12,16 @@
         <th>Name</th>
         <th>Faculty</th>
         <th>Department</th>
+		<th>Creator</th>
+		<th>Follower</th>
     </tr>
     <tr>
         <td>{{ course.coursenumber }}</td>
         <td>{{ course.name }}</td>
         <td>{% for faculty in course.faculty %} {{ faculty.FullName}} <br> {% endfor %}</td> 
-        <td>{{course.department}}</td>
+        <td>{{ course.department }}</td>
+		<td>{{ course.creator }}</td>
+		<td>{% for foll in  course.follower  %} {{ foll}} <br> {% endfor %}</td>
     </tr>   
 </table>
 <h4>Assignments</h4>
