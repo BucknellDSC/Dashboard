@@ -49,39 +49,6 @@ class User extends BaseUser
         return $this->id;
     }
 
-    /**
-     * Add Courses
-     *
-     * @param \Dashboard\CourseBundle\Entity\Course $courses
-     * @return User
-     */
-    public function addCourse(\Dashboard\CourseBundle\Entity\Course $courses)
-    {
-        $this->courses[] = $courses;
-
-        return $this;
-    }
-
-    /**
-     * Remove Courses
-     *
-     * @param \Dashboard\CourseBundle\Entity\Course $courses
-     */
-    public function removeCourse(\Dashboard\CourseBundle\Entity\Course $courses)
-    {
-        $this->courses->removeElement($courses);
-    }
-
-    /**
-     * Get Courses
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCourses()
-    {
-        return $this->courses;
-    }
-
 
     /**
      * Add coursescreate

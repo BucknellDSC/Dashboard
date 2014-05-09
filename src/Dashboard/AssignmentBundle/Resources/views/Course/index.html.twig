@@ -1,10 +1,12 @@
 {% extends "::base.html.twig" %}
 {% block sidebar %}
-<br>
-<a href ="{{path('Home')}}">Home</a> <br>
-<a href ="{{path('NewCourse')}}">Add Course</a>
+	<br>
+	<a href ="{{path('Home')}}">Home</a> <br>
+	<a href ="{{path('UserView', {userid: user.id})}}">My Account</a> <br>
+	<a href ="{{path('NewCourse')}}">Add Course</a>
 {% endblock %}
 {% block body %}
+<h3>Course Index</h3>
 <table class="table">
     <tr>
         <th>Course Number</th>
@@ -18,16 +20,20 @@
         <td><a href="{{ path('CourseView', {'courseid' : course.id}) }}">{{ course.name }}</a></td>
         <td>{% for faculty in course.faculty %} {{ faculty.FullName}} <br> {% endfor %}</td> 
         <td>{{course.department}}</td>
-		{% set existBoo = "false" %}
-		{% for follower in course.follower %}
-		{% if follower == user%}
-		<td><a href="{{ path('UnfollowCourse', {'courseid' : course.id}) }}">Unfollow</a></td>
-		{% set existBoo = "true"%}
-		{% endif%}
-		{% endfor%}
-		{% if existBoo == "false" %}
-		<td><a href="{{ path('FollowCourse', {'courseid' : course.id}) }}">Follow</a></td>
-		{% endif%}
+		{% if course.creator == user %}
+			<td></td>
+		{% else %}
+			{% set existBoo = "false" %}
+			{% for follower in course.follower %}
+				{% if follower == user%}
+					<td><a href="{{ path('UnfollowCourse', {'courseid' : course.id}) }}">Unfollow</a></td>
+					{% set existBoo = "true"%}
+				{% endif%}
+			{% endfor%}
+			{% if existBoo == "false" %}
+				<td><a href="{{ path('FollowCourse', {'courseid' : course.id}) }}">Follow</a></td>
+			{% endif %}
+		{% endif %}
 		
         <td><a href="{{ path('DeleteCourse', {'courseid' : course.id}) }}">Delete</a></td>
     </tr>

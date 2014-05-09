@@ -2,10 +2,12 @@
 {% block sidebar %}
 <br>
 <a href ="{{path('Home')}}">Home</a> <br>
-<a href ="{{path('NewTechCat')}}">Add </a> <br>
-<a href ="{{path('CatIndex')}}">Back to Index</a>
+<a href ="{{path('UserView', {userid: user.id})}}">My Account</a> <br>
+<a href ="{{path('NewTechCat')}}">Add a new Tech Category</a> <br>
+<a href ="{{path('CatIndex')}}">Technology Category Index</a>
 {% endblock %}
 {% block body %}
+<h3>View Technology Category: {{cat.name}}</h3>
 <table class="table">
     <tr>
 		<th>Technology Category Name</th>

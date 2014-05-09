@@ -29,8 +29,9 @@ class TechController extends Controller {
     public function indexToolAction() {
         //return new Response("tech controller");
 		 $em = $this->getDoctrine()->getManager();
+		 $user = $this->getUser();
         $tools = $em->getRepository('DashboardAssignmentBundle:TechnologyTools')->findAll();
-        return array("TechnologyTools" => $tools);
+        return array("TechnologyTools" => $tools, "user"=>$user);
     }
 	
 	    /**
@@ -40,8 +41,9 @@ class TechController extends Controller {
     public function indexCatAction() {
         //return new Response("tech controller");
 		 $em = $this->getDoctrine()->getManager();
+		 $user = $this->getUser();
         $category = $em->getRepository('DashboardAssignmentBundle:TechnologyCategory')->findAll();
-        return array("TechnologyCategory" => $category);
+        return array("TechnologyCategory" => $category, "user"=>$user);
     }
 	
 	/////////////////////////////////////////View////////////////////////////////////////////
@@ -51,8 +53,9 @@ class TechController extends Controller {
     */
     public function viewToolAction($toolid) {
         $em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
         $tool = $em->getRepository('DashboardAssignmentBundle:TechnologyTools')->find($toolid);
-        return array("tool" => $tool);
+        return array("tool" => $tool, "user"=>$user);
     }
 	
 	/**
@@ -61,8 +64,9 @@ class TechController extends Controller {
     */
     public function viewCatAction($catid) {
         $em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
         $cat = $em->getRepository('DashboardAssignmentBundle:TechnologyCategory')->find($catid);
-        return array("cat" => $cat);
+        return array("cat" => $cat, "user"=>$user);
     }
 	
 	//////////////////////////////////////////New/////////////////////////////////
@@ -76,6 +80,7 @@ class TechController extends Controller {
 		$form = $this ->createForm(new TechnologyToolsType(), $tools);
 			
 		$form->handleRequest($request);
+		$user = $this->getUser();
 		
 		if ($form->isValid()){
                         $em = $this->getDoctrine()->getManager();
@@ -85,7 +90,7 @@ class TechController extends Controller {
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(), "user"=>$user
                    ));
        
     }
@@ -99,6 +104,7 @@ class TechController extends Controller {
 		$form = $this ->createForm(new TechnologyCategoryType(), $category);
 			
 		$form->handleRequest($request);
+		$user = $this->getUser();
 		
 		if ($form->isValid()){
                         $em = $this->getDoctrine()->getManager();
@@ -108,7 +114,7 @@ class TechController extends Controller {
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(), "user"=>$user
                    ));
        
     }

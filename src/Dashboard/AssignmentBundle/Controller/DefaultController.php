@@ -25,8 +25,9 @@ class DefaultController extends Controller
      */
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
         $assignments = $em->getRepository('DashboardAssignmentBundle:Assignment')->findAll();
-        return array('assignments' => $assignments);
+        return array('assignments' => $assignments,  "user"=>$user);
     } 
 	
 	    /**
@@ -35,8 +36,9 @@ class DefaultController extends Controller
      */
     public function viewAction($assignmentid) {
         $em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
         $assignment = $em->getRepository('DashboardAssignmentBundle:Assignment')->find($assignmentid);
-        return array("assignment" => $assignment);
+        return array("assignment" => $assignment, "user"=>$user);
     }
 
 	   	/**
@@ -63,16 +65,10 @@ class DefaultController extends Controller
         */
 	public function newAction(Request $request)
 	{
-		// create a Assignment and give it some dummy data for this example
+		$user = $this->getUser();		
 		$assignment = new Assignment();
-		
-		//$assignment->setStudentsEnrolled(0);
-		
-		$form = $this ->createForm(new AssignmentType(), $assignment);//$this->createFormBuilder($assignment)
-		//->getForm();
-			
-		$form->handleRequest($request);
-		
+		$form = $this ->createForm(new AssignmentType(), $assignment);//$this->		
+		$form->handleRequest($request);		
 		if ($form->isValid()){
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($assignment);
@@ -81,7 +77,7 @@ class DefaultController extends Controller
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(),"user"=>$user
                    ));
 		}
 		

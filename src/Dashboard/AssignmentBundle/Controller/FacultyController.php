@@ -24,8 +24,9 @@ class FacultyController extends Controller
      */
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
         $faculty = $em->getRepository('DashboardAssignmentBundle:Faculty')->findAll();
-        return array("faculty" => $faculty);
+        return array("faculty" => $faculty, "user"=>$user);
     } 
     
     /**
@@ -38,6 +39,7 @@ class FacultyController extends Controller
 		$form = $this ->createForm(new FacultyType(), $faculty);
 			
 		$form->handleRequest($request);
+		$user = $this->getUser();
 		
 		if ($form->isValid()){
                         $em = $this->getDoctrine()->getManager();
@@ -47,7 +49,7 @@ class FacultyController extends Controller
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(), 'user'=>$user
                    ));
     }
     

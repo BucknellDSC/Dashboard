@@ -2,10 +2,12 @@
 {% block sidebar %}
 <br>
 <a href ="{{path('Home')}}">Home</a>  <br>
+<a href ="{{path('UserView', {userid: user.id})}}">My Account</a> <br>
 <a href ="{{path('NewCourse')}}">Add Course</a> <br>
-<a href ="{{path('CourseIndex')}}">Index</a>
+<a href ="{{path('CourseIndex')}}">Course Index</a>
 {% endblock %}
 {% block body %}
+<h3>View Course: {{course.name}}</h3>
 <table class="table">
     <tr>
         <th>Course Number</th>

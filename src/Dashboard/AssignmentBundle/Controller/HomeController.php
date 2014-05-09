@@ -25,7 +25,8 @@ class HomeController extends Controller
 	function HomeAction(){
 	$em = $this->getDoctrine()->getManager();
 	$users = $em->getRepository('DashboardUserBundle:User')->findAll();
-    return $this->render('DashboardAssignmentBundle:Home:home.html.twig', array('users' => $users));
+	$user = $this->getUser();
+    return $this->render('DashboardAssignmentBundle:Home:home.html.twig', array('users' => $users, 'user' => $user));
     //return $this->render('DashboardAssignmentBundle:Home:home.html.twig');
 	}
 }

@@ -36,8 +36,9 @@ class CourseController extends Controller {
      */
     public function viewAction($courseid) {
         $em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
         $course = $em->getRepository('DashboardAssignmentBundle:Course')->find($courseid);
-        return array("course" => $course);
+        return array("course" => $course, "user"=>$user);
     }
 
 
@@ -60,7 +61,7 @@ class CourseController extends Controller {
 			}
 			
 		return $this->render('DashboardAssignmentBundle:Default:new.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(), "user"=>$user
                    ));
 		}
     /**
@@ -70,10 +71,11 @@ class CourseController extends Controller {
     public function deleteAction($courseid)
     {
         $em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
         $course = $em->getRepository('DashboardAssignmentBundle:Course')->find($courseid);
         $em->remove($course);
         $em->flush();
-        return $this->redirect($this->generateUrl('CourseIndex'));
+        return $this->redirect($this->generateUrl('CourseIndex'), array("user"=>$user));
     }
 	
 	   /**

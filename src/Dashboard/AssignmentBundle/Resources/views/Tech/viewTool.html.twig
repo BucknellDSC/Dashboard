@@ -2,10 +2,12 @@
 {% block sidebar %}
 <br>
 <a href ="{{path('Home')}}">Home</a> <br>
-<a href ="{{path('NewTechTools')}}">Add</a> <br>
-<a href ="{{path('ToolIndex')}}">Back to Index</a>
+<a href ="{{path('UserView', {userid: user.id})}}">My Account</a> <br>
+<a href ="{{path('NewTechTools')}}">Add a new Tech Tool</a> <br>
+<a href ="{{path('ToolIndex')}}">Technology Tool Index</a>
 {% endblock %}
 {% block body %}
+<h3>View Technology Tool: {{tool.name}}</h3>
 <table class="table">
     <tr>
 		<th>Technology Tool Name</th>
